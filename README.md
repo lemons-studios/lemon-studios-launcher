@@ -1,34 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">
+  Mission: Monkey Installer
+</h1>
+<p align="center">
+  <a href="https://tauri.app">
+    <img src="https://img.shields.io/badge/tauri-%2324C8DB.svg?style=for-the-badge&logo=tauri&logoColor=%23FFFFFF">
+  </a>
+  <a href="https://www.rust-lang.org">
+    <img src="https://img.shields.io/badge/rust-%23000000.svg?style=for-the-badge&logo=rust&logoColor=white">
+  </a>
+  <a href="https://unity.com">
+    <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white">
+  </a>
+</p>
+<p align="center"><i>Why did I even learn Tauri 😢</i></p>
+<hr>
 
-## Getting Started
-
+## 🛠️ Running from source
 First, run the development server:
-
-```bash
+```sh
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
+Then open http://localhost:3000 with your browser to see the result.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Deploying
+It is recommended to deploy using Netlify or Vercel because they support Next.js apps and handle the builds for you.  
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+But if you want, you can also deploy on a different hosting service or self-host
+1. Build the project with
+```sh
+npm run build
+```
+2. Then serve static build with
+```sh
+npm start
+```
