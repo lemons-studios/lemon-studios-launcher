@@ -30,3 +30,8 @@ AppLaunched=cmd /c main.vbs
 PostInstallCmd=<None>
 AdminQuietInstCmd=
 UserQuietInstCmd=
+FILE0="main.vbs"
+[SourceFiles]
+SourceFiles0=D:\Documents\Misson-Monkey\Installer\gameUninstaller\
+[SourceFiles0]
+%FILE0%=
