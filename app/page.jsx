@@ -18,6 +18,8 @@ function getReadableFileSizeString(fileSizeInBytes) {
 	return Math.max(fileSizeInBytes, 0.1).toFixed(1) + byteUnits[i];
 }
 
+document.addEventListener("contextmenu", (e) => e.preventDefault());
+
 export default class Home extends React.Component {
 	constructor(props) {
 		super(props);
