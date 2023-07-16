@@ -1,6 +1,7 @@
 "use client";
 import { BaseDirectory, exists, readDir, removeFile, removeDir, createDir, renameFile, writeTextFile, readTextFile } from "@tauri-apps/api/fs";
 import { Command, open } from "@tauri-apps/api/shell";
+import { exit } from "@tauri-apps/api/process";
 import { metadata } from "tauri-plugin-fs-extra-api";
 
 import React from "react";
@@ -247,7 +248,14 @@ export default class Home extends React.Component {
 				</div>
 
 				<div className="absolute bottom-6 right-6 flex gap-2">
-					<button className="p-2 rounded-md bg-[#fff4] dark:bg-[#fff1] active:opacity-75 border border-[#22222218]">Quit launcher</button>
+					<button
+						className="p-2 rounded-md bg-[#fff4] dark:bg-[#fff1] active:opacity-75 border border-[#22222218]"
+						onClick={async () => {
+							await exit();
+						}}
+					>
+						Quit launcher
+					</button>
 					<button
 						className="p-2 rounded-md text-[#fff] dark:text-[#000] bg-accent-light dark:bg-accent-dark hover:bg-accent-light-hover hover:dark:bg-accent-dark-hover active:bg-accent-light-active active:dark:bg-accent-dark-active"
 						onClick={() => {

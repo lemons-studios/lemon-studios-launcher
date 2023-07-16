@@ -12,6 +12,9 @@
 	},
 	"tauri": {
 		"allowlist": {
+			"process": {
+				"all": true
+			},
 			"fs": {
 				"all": true,
 				"scope": ["$DATA/**", "$LOCALDATA/**", "$TEMP/**"]

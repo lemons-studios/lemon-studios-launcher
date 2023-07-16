@@ -17,7 +17,7 @@ tauri-build = { version = "1.4.0", features = [] }
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.4.0", features = [ "shell-all", "os-all", "window-all", "fs-all", "path-all"] }
+tauri = { version = "1.4.0", features = [ "process-all", "shell-all", "os-all", "window-all", "fs-all", "path-all"] }
 tauri-plugin-fs-extra = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "dev" }
 window-vibrancy = "0.4.0"
 windows-sys = "0.48.0"
