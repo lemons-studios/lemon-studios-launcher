@@ -1,11 +1,8 @@
 "use client";
 import { BaseDirectory, exists, readDir } from "@tauri-apps/api/fs";
-import { appWindow } from "@tauri-apps/api/window";
 import React from "react";
 import { Settings20Regular } from "@fluentui/react-icons";
 // import axios from "axios";
-
-appWindow.setDecorations(true);
 
 function getReadableFileSizeString(fileSizeInBytes) {
 	var i = -1;
@@ -17,8 +14,6 @@ function getReadableFileSizeString(fileSizeInBytes) {
 
 	return Math.max(fileSizeInBytes, 0.1).toFixed(1) + byteUnits[i];
 }
-
-document.addEventListener("contextmenu", (e) => e.preventDefault());
 
 export default class Home extends React.Component {
 	constructor(props) {
@@ -59,6 +54,9 @@ export default class Home extends React.Component {
 		};
 	}
 	async componentDidMount() {
+		const { appWindow } = require("@tauri-apps/api/window");
+		appWindow.setDecorations(true);
+		document.addEventListener("contextmenu", (e) => e.preventDefault());
 		this.state.checkUpdate();
 	}
 	render() {
