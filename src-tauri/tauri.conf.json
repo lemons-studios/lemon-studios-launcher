@@ -21,6 +21,22 @@
 			},
 			"path": {
 				"all": true
+			},
+			"os": {
+				"all": true
+			},
+			"shell": {
+				"all": true,
+				"execute": true,
+				"sidecar": true,
+				"open": true,
+				"scope": [
+					{
+						"name": "curl",
+						"cmd": "curl",
+						"args": true
+					}
+				]
 			}
 		},
 		"bundle": {

@@ -1,8 +1,10 @@
 "use client";
-import { BaseDirectory, exists, readDir } from "@tauri-apps/api/fs";
+import { BaseDirectory, exists, readDir, removeFile } from "@tauri-apps/api/fs";
+import { Command } from "@tauri-apps/api/shell";
+import { metadata } from "tauri-plugin-fs-extra-api";
+
 import React from "react";
 import { Settings20Regular } from "@fluentui/react-icons";
-// import axios from "axios";
 
 function getReadableFileSizeString(fileSizeInBytes) {
 	var i = -1;
@@ -19,10 +21,9 @@ export default class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			downloadProgess: 50,
+			downloadProgess: -1,
 			totalBytes: 0,
 			downloadedBytes: 0,
-			downloadSpeed: 0,
 			installStatus: "Downloading...",
 			currentVersion: null,
 			latestVersion: null,
@@ -40,16 +41,25 @@ export default class Home extends React.Component {
 				this.setState({ latestVersion: res.name });
 			},
 			install: async () => {
+				const { tempdir } = require("@tauri-apps/api/os");
+				const tempdirPath = await tempdir();
+				console.log(tempdirPath);
 				console.log(this.state.latestRelease.assets[0].browser_download_url);
-				// await axios.get(this.state.latestRelease.assets[0].browser_download_url, {
-				// 	responseType: "blob",
-				// 	onDownloadProgress: async ({ loaded, total, progress, rate }) => {
-				// 		this.setState({ downloadedBytes: loaded });
-				// 		this.setState({ totalBytes: total });
-				// 		this.setState({ downloadProgess: Math.round(progress * 100) });
-				// 		this.setState({ downloadSpeed: rate });
-				// 	}
-				// });
+				await removeFile("missionmonkey.zip", { dir: BaseDirectory.Temp }).catch(() => {});
+				const downloadCmd = new Command("curl", ["-L", this.state.latestRelease.assets[0].browser_download_url, "-o", "missionmonkey.zip"], {
+					cwd: tempdirPath
+				});
+				downloadCmd.on("close", (data) => {
+					console.log(`command finished with code ${data.code} and signal ${data.signal}`);
+					clearInterval(getFileSizeInter);
+				});
+				this.setState({ totalBytes: this.state.latestRelease.assets[0].size });
+				var getFileSizeInter = setInterval(async () => {
+					var info = await metadata(tempdirPath + "missionmonkey.zip");
+					this.setState({ downloadedBytes: info.size });
+					this.setState({ downloadProgess: Math.round((info.size / this.state.latestRelease.assets[0].size) * 100) });
+				}, 250);
+				const child = await downloadCmd.spawn();
 			}
 		};
 	}
@@ -72,9 +82,7 @@ export default class Home extends React.Component {
 						<div>
 							<button
 								className="p-2 rounded-md text-[#fff] dark:text-[#000] bg-accent-light dark:bg-accent-dark hover:bg-accent-light-hover hover:dark:bg-accent-dark-hover active:bg-accent-light-active active:dark:bg-accent-dark-active"
-								onClick={() => {
-									this.state.install();
-								}}
+								onClick={this.state.install}
 							>
 								{this.state.currentVersion ? "Check for updates" : "Install"}
 							</button>
@@ -92,14 +100,13 @@ export default class Home extends React.Component {
 								style={{
 									width: this.state.downloadProgess > -1 ? `${this.state.downloadProgess}%` : "0%"
 								}}
-								className="h-full bg-accent-light dark:bg-accent-dark rounded-full"
+								className="h-full bg-accent-light dark:bg-accent-dark rounded-full transition-all"
 							></div>
 						</div>
 						<div className="flex justify-between text-xs mt-1">
 							<p>{this.state.installStatus}</p>
 							<p>
-								{this.state.downloadProgess}% ({getReadableFileSizeString(this.state.downloadedBytes)}/{getReadableFileSizeString(this.state.totalBytes)},{" "}
-								{getReadableFileSizeString(this.state.downloadSpeed)}/s)
+								{this.state.downloadProgess}% ({getReadableFileSizeString(this.state.downloadedBytes)}/{getReadableFileSizeString(this.state.totalBytes)})
 							</p>
 						</div>
 					</div>
