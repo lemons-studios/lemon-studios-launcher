@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+	font-family: system-ui;
+}
+
+@keyframes pageOpen {
+	0% {
+		transform: translateY(-50px);
+		opacity: 0.3;
+	}
+	100% {
+		transform: translateY(0px);
+	}
+}
+
+main {
+	animation: pageOpen 0.3s ease-out;
+}
+
 body {
 	user-select: none;
+}
+
+@media (prefers-color-scheme: dark) {
+	* {
+		color: #fff;
+	}
 }

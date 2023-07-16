@@ -14,7 +14,7 @@
 		"allowlist": {
 			"fs": {
 				"all": true,
-				"scope": ["$DATA/**"]
+				"scope": ["$DATA/**", "$LOCALDATA/**", "$TEMP/**"]
 			},
 			"window": {
 				"all": true
@@ -61,10 +61,15 @@
 				"fullscreen": false,
 				"transparent": true,
 				"decorations": false,
-				"height": 600,
+				"height": 500,
+				"width": 600,
+				"minHeight": 400,
+				"minWidth": 500,
+				"maxHeight": 600,
+				"maxWidth": 800,
 				"resizable": true,
 				"title": "Mission: Monkey Installer",
-				"width": 800
+				"maximizable": false
 			}
 		]
 	}
