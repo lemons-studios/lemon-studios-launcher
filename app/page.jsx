@@ -53,15 +53,18 @@ export default class Home extends React.Component {
 				console.log(res);
 				this.setState({ latestRelease: res });
 				this.setState({ latestVersion: res.name });
+				this.state.findGameExe();
 			},
 			install: async () => {
+				// PREPARATIONS
 				this.setState({ installStatus: "Preparing..." });
 				this.setState({ downloadProgess: 101 });
 				const { tempdir } = require("@tauri-apps/api/os");
 				const tempdirPath = await tempdir();
 				await removeFile("missionmonkey.zip", { dir: BaseDirectory.Temp }).catch(() => {});
-
 				this.setState({ totalBytes: this.state.latestRelease.assets[0].size });
+
+				// // DOWNLOAD
 				var getFileSizeInter = setInterval(async () => {
 					var info = await metadata(tempdirPath + "missionmonkey.zip").catch(() => {});
 					if (info) {
@@ -74,11 +77,13 @@ export default class Home extends React.Component {
 					cwd: tempdirPath
 				}).execute();
 				clearInterval(getFileSizeInter);
+
+				// // START COPYING FILES
 				this.setState({ downloadedBytes: this.state.latestRelease.assets[0].size });
 				this.setState({ downloadProgess: 101 });
 				this.setState({ installStatus: "Installing..." });
 
-				// UNZIP
+				// // UNZIP
 				this.setState({ downloadProgess: 101 });
 				this.setState({ installStatus: "Installing..." });
 				const { localDataDir } = require("@tauri-apps/api/path");
@@ -95,6 +100,83 @@ export default class Home extends React.Component {
 				await writeTextFile("mission-monkey\\game\\version.txt", this.state.latestVersion, { dir: BaseDirectory.LocalData });
 				this.setState({ currentVersion: this.state.latestVersion });
 				this.setState({ downloadProgess: -1 });
+
+				// WRITE REGISTRY KEYS
+				this.state.registerGame(localDataDirPath, this.state.totalBytes, this.state.latestVersion);
+
+				// RELOAD EXE PATH
+				this.state.findGameExe();
+			},
+			registerGame: async (localappdata, size, version) => {
+				await new Command("reg", ["add", "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\MissionMonkey", "/f"]).execute();
+				await new Command("reg", [
+					"add",
+					"HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\MissionMonkey",
+					"/v",
+					"DisplayName",
+					"/t",
+					"REG_SZ",
+					"/d",
+					"Mission: Monkey",
+					"/f"
+				]).execute();
+				await new Command("reg", [
+					"add",
+					"HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\MissionMonkey",
+					"/v",
+					"Publisher",
+					"/t",
+					"REG_SZ",
+					"/d",
+					"Lemon Studios",
+					"/f"
+				]).execute();
+				await new Command("reg", [
+					"add",
+					"HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\MissionMonkey",
+					"/v",
+					"DisplayVersion",
+					"/t",
+					"REG_SZ",
+					"/d",
+					version,
+					"/f"
+				]).execute();
+				await new Command("reg", [
+					"add",
+					"HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\MissionMonkey",
+					"/v",
+					"DisplayIcon",
+					"/t",
+					"REG_SZ",
+					"/d",
+					localappdata + "\\mission-monkey\\game\\Mission Monkey.exe",
+					"/f"
+				]).execute();
+				await new Command("reg", [
+					"add",
+					"HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\MissionMonkey",
+					"/v",
+					"UninstallString",
+					"/t",
+					"REG_SZ",
+					"/d",
+					localappdata + "\\mission-monkey\\game\\uninstall.exe",
+					"/f"
+				]).execute();
+				await new Command("reg", [
+					"add",
+					"HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\MissionMonkey",
+					"/v",
+					"EstimatedSize",
+					"/t",
+					"REG_DWORD",
+					"/d",
+					Math.round(size / 1024).toString(),
+					"/f"
+				]).execute();
+				await new Command("reg", ["add", "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\MissionMonkey", "/v", "NoModify", "/t", "REG_DWORD", "/d", "1", "/f"]).execute();
+				await new Command("reg", ["add", "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\MissionMonkey", "/v", "NoRepair", "/t", "REG_DWORD", "/d", "1", "/f"]).execute();
 			}
 		};
 	}

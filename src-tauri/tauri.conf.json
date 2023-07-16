@@ -44,6 +44,11 @@
 						"name": "rename",
 						"cmd": "rename",
 						"args": true
+					},
+					{
+						"name": "reg",
+						"cmd": "reg",
+						"args": true
 					}
 				]
 			}
