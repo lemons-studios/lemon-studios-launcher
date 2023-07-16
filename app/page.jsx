@@ -1,11 +1,10 @@
 "use client";
 import { BaseDirectory, exists, readDir, removeFile, removeDir, createDir, renameFile, writeTextFile, readTextFile } from "@tauri-apps/api/fs";
-import { Command } from "@tauri-apps/api/shell";
+import { Command, open } from "@tauri-apps/api/shell";
 import { metadata } from "tauri-plugin-fs-extra-api";
 
 import React from "react";
 import { Settings20Regular } from "@fluentui/react-icons";
-import { current } from "tailwindcss/colors";
 
 function sleep(ms) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
@@ -33,6 +32,14 @@ export default class Home extends React.Component {
 			currentVersion: null,
 			latestVersion: null,
 			latestRelease: {},
+			gameExePath: null,
+			findGameExe: async () => {
+				const gameDirFolders = await readDir("mission-monkey", { dir: BaseDirectory.LocalData });
+				if (gameDirFolders.length == 0) return;
+				if (await exists(gameDirFolders[0].path + "\\Mission Monkey.exe", { dir: BaseDirectory.LocalData })) {
+					this.setState({ gameExePath: gameDirFolders[0].path + "\\Mission Monkey.exe" });
+				}
+			},
 			checkUpdate: async () => {
 				const installed = await exists("mission-monkey\\game", { dir: BaseDirectory.LocalData });
 				if (installed && (await exists("mission-monkey\\game\\version.txt", { dir: BaseDirectory.LocalData }))) {
@@ -95,6 +102,7 @@ export default class Home extends React.Component {
 		const { appWindow } = require("@tauri-apps/api/window");
 		appWindow.setDecorations(true);
 		document.addEventListener("contextmenu", (e) => e.preventDefault());
+		this.state.findGameExe();
 		this.state.checkUpdate();
 	}
 	render() {
@@ -153,7 +161,14 @@ export default class Home extends React.Component {
 
 				<div className="absolute bottom-6 right-6 flex gap-2">
 					<button className="p-2 rounded-md bg-[#fff4] dark:bg-[#fff1] active:opacity-75 border border-[#22222218]">Quit launcher</button>
-					<button className="p-2 rounded-md text-[#fff] dark:text-[#000] bg-accent-light dark:bg-accent-dark hover:bg-accent-light-hover hover:dark:bg-accent-dark-hover active:bg-accent-light-active active:dark:bg-accent-dark-active">
+					<button
+						className="p-2 rounded-md text-[#fff] dark:text-[#000] bg-accent-light dark:bg-accent-dark hover:bg-accent-light-hover hover:dark:bg-accent-dark-hover active:bg-accent-light-active active:dark:bg-accent-dark-active"
+						onClick={() => {
+							if (this.state.gameExePath) {
+								open(this.state.gameExePath);
+							}
+						}}
+					>
 						Launch game
 					</button>
 				</div>

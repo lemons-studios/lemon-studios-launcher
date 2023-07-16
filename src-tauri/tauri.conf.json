@@ -28,8 +28,7 @@
 			"shell": {
 				"all": true,
 				"execute": true,
-				"sidecar": true,
-				"open": true,
+				"open": ".+",
 				"scope": [
 					{
 						"name": "curl",
