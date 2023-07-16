@@ -52,6 +52,8 @@ export default class Home extends React.Component {
 				downloadCmd.on("close", (data) => {
 					console.log(`command finished with code ${data.code} and signal ${data.signal}`);
 					clearInterval(getFileSizeInter);
+					this.setState({ downloadedBytes: this.state.latestRelease.assets[0].size });
+					this.setState({ downloadProgess: 100 });
 				});
 				this.setState({ totalBytes: this.state.latestRelease.assets[0].size });
 				var getFileSizeInter = setInterval(async () => {
