@@ -3,7 +3,7 @@ import { BaseDirectory, exists, readDir } from "@tauri-apps/api/fs";
 import { appWindow } from "@tauri-apps/api/window";
 import React from "react";
 import { Settings20Regular } from "@fluentui/react-icons";
-import axios from "axios";
+// import axios from "axios";
 
 appWindow.setDecorations(true);
 
@@ -46,15 +46,15 @@ export default class Home extends React.Component {
 			},
 			install: async () => {
 				console.log(this.state.latestRelease.assets[0].browser_download_url);
-				await axios.get(this.state.latestRelease.assets[0].browser_download_url, {
-					responseType: "blob",
-					onDownloadProgress: async ({ loaded, total, progress, rate }) => {
-						this.setState({ downloadedBytes: loaded });
-						this.setState({ totalBytes: total });
-						this.setState({ downloadProgess: Math.round(progress * 100) });
-						this.setState({ downloadSpeed: rate });
-					}
-				});
+				// await axios.get(this.state.latestRelease.assets[0].browser_download_url, {
+				// 	responseType: "blob",
+				// 	onDownloadProgress: async ({ loaded, total, progress, rate }) => {
+				// 		this.setState({ downloadedBytes: loaded });
+				// 		this.setState({ totalBytes: total });
+				// 		this.setState({ downloadProgess: Math.round(progress * 100) });
+				// 		this.setState({ downloadSpeed: rate });
+				// 	}
+				// });
 			}
 		};
 	}
