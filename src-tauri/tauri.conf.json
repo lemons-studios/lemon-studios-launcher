@@ -35,6 +35,11 @@
 						"name": "curl",
 						"cmd": "curl",
 						"args": true
+					},
+					{
+						"name": "tar",
+						"cmd": "tar",
+						"args": true
 					}
 				]
 			}

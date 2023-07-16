@@ -1,5 +1,5 @@
 "use client";
-import { BaseDirectory, exists, readDir, removeFile } from "@tauri-apps/api/fs";
+import { BaseDirectory, exists, readDir, removeFile, removeDir, createDir } from "@tauri-apps/api/fs";
 import { Command } from "@tauri-apps/api/shell";
 import { metadata } from "tauri-plugin-fs-extra-api";
 
@@ -43,26 +43,40 @@ export default class Home extends React.Component {
 			install: async () => {
 				const { tempdir } = require("@tauri-apps/api/os");
 				const tempdirPath = await tempdir();
-				console.log(tempdirPath);
-				console.log(this.state.latestRelease.assets[0].browser_download_url);
 				await removeFile("missionmonkey.zip", { dir: BaseDirectory.Temp }).catch(() => {});
 				const downloadCmd = new Command("curl", ["-L", this.state.latestRelease.assets[0].browser_download_url, "-o", "missionmonkey.zip"], {
 					cwd: tempdirPath
 				});
 				this.setState({ totalBytes: this.state.latestRelease.assets[0].size });
 				var getFileSizeInter = setInterval(async () => {
-					var info = await metadata(tempdirPath + "missionmonkey.zip");
+					var info = await metadata(tempdirPath + "missionmonkey.zip").catch(() => {});
 					this.setState({ downloadedBytes: info.size });
 					this.setState({ downloadProgess: Math.round((info.size / this.state.latestRelease.assets[0].size) * 100) });
 				}, 250);
-				downloadCmd.on("close", (data) => {
+				downloadCmd.on("close", async (data) => {
 					console.log(`command finished with code ${data.code} and signal ${data.signal}`);
 					clearInterval(getFileSizeInter);
 					this.setState({ downloadedBytes: this.state.latestRelease.assets[0].size });
 					this.setState({ downloadProgess: 101 });
 					this.setState({ installStatus: "Installing..." });
+
+					// UNZIP
+					this.setState({ downloadProgess: 101 });
+					this.setState({ installStatus: "Installing..." });
+					const { localDataDir } = require("@tauri-apps/api/path");
+					const localDataDirPath = await localDataDir();
+					await removeDir("mission-monkey", { dir: BaseDirectory.LocalData }).catch(() => {});
+					await createDir("mission-monkey", { dir: BaseDirectory.LocalData }).catch(() => {});
+					console.log(`${tempdirPath}missionmonkey.zip`);
+					const unzipCmd = new Command("tar", ["-xvmf", `${tempdirPath}missionmonkey.zip`.replace("\\", "\\\\")], { cwd: localDataDirPath + "mission-monkey" });
+					unzipCmd.on("close", (data) => {
+						console.log(`command finished with code ${data.code} and signal ${data.signal}`);
+						this.setState({ downloadProgess: -1 });
+					});
+					unzipCmd.stderr.on("data", (data) => console.log(data));
+					await unzipCmd.spawn();
 				});
-				const downloadCmdChild = await downloadCmd.spawn();
+				await downloadCmd.spawn();
 			}
 		};
 	}
