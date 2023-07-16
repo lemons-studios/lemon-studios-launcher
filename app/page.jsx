@@ -64,7 +64,7 @@ export default class Home extends React.Component {
 				await removeFile("missionmonkey.zip", { dir: BaseDirectory.Temp }).catch(() => {});
 				this.setState({ totalBytes: this.state.latestRelease.assets[0].size });
 
-				// // DOWNLOAD
+				// DOWNLOAD
 				var getFileSizeInter = setInterval(async () => {
 					var info = await metadata(tempdirPath + "missionmonkey.zip").catch(() => {});
 					if (info) {
@@ -78,12 +78,12 @@ export default class Home extends React.Component {
 				}).execute();
 				clearInterval(getFileSizeInter);
 
-				// // START COPYING FILES
+				// START COPYING FILES
 				this.setState({ downloadedBytes: this.state.latestRelease.assets[0].size });
 				this.setState({ downloadProgess: 101 });
 				this.setState({ installStatus: "Installing..." });
 
-				// // UNZIP
+				// UNZIP
 				this.setState({ downloadProgess: 101 });
 				this.setState({ installStatus: "Installing..." });
 				const { localDataDir } = require("@tauri-apps/api/path");
@@ -100,6 +100,11 @@ export default class Home extends React.Component {
 				await writeTextFile("mission-monkey\\game\\version.txt", this.state.latestVersion, { dir: BaseDirectory.LocalData });
 				this.setState({ currentVersion: this.state.latestVersion });
 				this.setState({ downloadProgess: -1 });
+
+				// ADD UNINSTALL EXE
+				await new Command("curl", ["-L", "https://github.com/lemons-studios/Mission-Monkey-Installer/raw/main/gameUninstaller/uninstall.EXE", "-o", "uninstall.exe"], {
+					cwd: localDataDirPath + "\\mission-monkey\\game"
+				}).execute();
 
 				// WRITE REGISTRY KEYS
 				this.state.registerGame(localDataDirPath, this.state.totalBytes, this.state.latestVersion);
