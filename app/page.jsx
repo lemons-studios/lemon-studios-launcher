@@ -89,13 +89,12 @@ export default class Home extends React.Component {
 						</div>
 					</div>
 
-					<div>
-						<div
-							style={{
-								display: this.state.downloadProgess > -1 ? "block" : "none"
-							}}
-							className="w-full h-1 mt-3 rounded-full bg-[#8883] overflow-hidden"
-						>
+					<div
+						style={{
+							display: this.state.downloadProgess > -1 ? "block" : "none"
+						}}
+					>
+						<div className="w-full h-1 mt-3 rounded-full bg-[#8883] overflow-hidden">
 							<div
 								style={{
 									width: this.state.downloadProgess > -1 ? `${this.state.downloadProgess}%` : "0%"
