@@ -16,6 +16,26 @@
 	}
 }
 
+@keyframes indeterminatePb {
+	0% {
+		left: -20%;
+	}
+	60% {
+		left: 100%;
+	}
+	60.1% {
+		left: -20%;
+	}
+	100% {
+		left: 100%;
+	}
+}
+
+.indeterminate-pb {
+	width: 20% !important;
+	animation: indeterminatePb 3s ease-in-out infinite;
+}
+
 main {
 	animation: pageOpen 0.3s ease-out;
 }

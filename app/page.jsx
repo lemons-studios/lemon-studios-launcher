@@ -49,19 +49,20 @@ export default class Home extends React.Component {
 				const downloadCmd = new Command("curl", ["-L", this.state.latestRelease.assets[0].browser_download_url, "-o", "missionmonkey.zip"], {
 					cwd: tempdirPath
 				});
-				downloadCmd.on("close", (data) => {
-					console.log(`command finished with code ${data.code} and signal ${data.signal}`);
-					clearInterval(getFileSizeInter);
-					this.setState({ downloadedBytes: this.state.latestRelease.assets[0].size });
-					this.setState({ downloadProgess: 100 });
-				});
 				this.setState({ totalBytes: this.state.latestRelease.assets[0].size });
 				var getFileSizeInter = setInterval(async () => {
 					var info = await metadata(tempdirPath + "missionmonkey.zip");
 					this.setState({ downloadedBytes: info.size });
 					this.setState({ downloadProgess: Math.round((info.size / this.state.latestRelease.assets[0].size) * 100) });
 				}, 250);
-				const child = await downloadCmd.spawn();
+				downloadCmd.on("close", (data) => {
+					console.log(`command finished with code ${data.code} and signal ${data.signal}`);
+					clearInterval(getFileSizeInter);
+					this.setState({ downloadedBytes: this.state.latestRelease.assets[0].size });
+					this.setState({ downloadProgess: 101 });
+					this.setState({ installStatus: "Installing..." });
+				});
+				const downloadCmdChild = await downloadCmd.spawn();
 			}
 		};
 	}
@@ -96,17 +97,21 @@ export default class Home extends React.Component {
 							display: this.state.downloadProgess > -1 ? "block" : "none"
 						}}
 					>
-						<div className="w-full h-1 mt-3 rounded-full bg-[#8883] overflow-hidden">
+						<div className="relative w-full h-1 mt-3 rounded-full bg-[#8883] overflow-hidden">
 							<div
 								style={{
 									width: this.state.downloadProgess > -1 ? `${this.state.downloadProgess}%` : "0%"
 								}}
-								className="h-full bg-accent-light dark:bg-accent-dark rounded-full transition-all"
+								className={(this.state.downloadProgess > 100 ? "indeterminate-pb " : "") + "absolute h-full bg-accent-light dark:bg-accent-dark rounded-full transition-all"}
 							></div>
 						</div>
 						<div className="flex justify-between text-xs mt-1">
 							<p>{this.state.installStatus}</p>
-							<p>
+							<p
+								style={{
+									display: this.state.downloadProgess < 101 ? "" : "none"
+								}}
+							>
 								{this.state.downloadProgess}% ({getReadableFileSizeString(this.state.downloadedBytes)}/{getReadableFileSizeString(this.state.totalBytes)})
 							</p>
 						</div>

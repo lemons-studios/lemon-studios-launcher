@@ -69,7 +69,7 @@ fn main() {
                 .expect("Unsupported platform! 'apply_mica' is only supported on Windows");
             }
             else if is_at_least_build(19043) {
-                apply_acrylic(&window, None)
+                apply_acrylic(&window, Some((128, 128, 128, 1)))
                    .expect("Unsupported platform! 'apply_acrylic' is only supported on Windows 10 1903 or higher");
             }
 
