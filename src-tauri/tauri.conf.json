@@ -40,6 +40,11 @@
 						"name": "tar",
 						"cmd": "tar",
 						"args": true
+					},
+					{
+						"name": "rename",
+						"cmd": "rename",
+						"args": true
 					}
 				]
 			}

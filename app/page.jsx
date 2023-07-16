@@ -1,10 +1,15 @@
 "use client";
-import { BaseDirectory, exists, readDir, removeFile, removeDir, createDir } from "@tauri-apps/api/fs";
+import { BaseDirectory, exists, readDir, removeFile, removeDir, createDir, renameFile, writeTextFile, readTextFile } from "@tauri-apps/api/fs";
 import { Command } from "@tauri-apps/api/shell";
 import { metadata } from "tauri-plugin-fs-extra-api";
 
 import React from "react";
 import { Settings20Regular } from "@fluentui/react-icons";
+import { current } from "tailwindcss/colors";
+
+function sleep(ms) {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 function getReadableFileSizeString(fileSizeInBytes) {
 	var i = -1;
@@ -29,10 +34,12 @@ export default class Home extends React.Component {
 			latestVersion: null,
 			latestRelease: {},
 			checkUpdate: async () => {
-				const installed = await exists("mission-monkey", { dir: BaseDirectory.LocalData });
-				if (installed) {
-					const entries = await readDir("mission-monkey", { dir: BaseDirectory.LocalData, recursive: false });
-					console.log(entries);
+				const installed = await exists("mission-monkey\\game", { dir: BaseDirectory.LocalData });
+				if (installed && (await exists("mission-monkey\\game\\version.txt", { dir: BaseDirectory.LocalData }))) {
+					const version = await readTextFile("mission-monkey\\game\\version.txt", { dir: BaseDirectory.LocalData });
+					this.setState({ currentVersion: version });
+				} else {
+					this.setState({ currentVersion: null });
 				}
 
 				const res = await (await fetch("https://api.github.com/repos/lemons-studios/Mission-Monkey/releases/latest")).json();
@@ -41,42 +48,46 @@ export default class Home extends React.Component {
 				this.setState({ latestVersion: res.name });
 			},
 			install: async () => {
+				this.setState({ installStatus: "Preparing..." });
+				this.setState({ downloadProgess: 101 });
 				const { tempdir } = require("@tauri-apps/api/os");
 				const tempdirPath = await tempdir();
 				await removeFile("missionmonkey.zip", { dir: BaseDirectory.Temp }).catch(() => {});
-				const downloadCmd = new Command("curl", ["-L", this.state.latestRelease.assets[0].browser_download_url, "-o", "missionmonkey.zip"], {
-					cwd: tempdirPath
-				});
+
 				this.setState({ totalBytes: this.state.latestRelease.assets[0].size });
 				var getFileSizeInter = setInterval(async () => {
 					var info = await metadata(tempdirPath + "missionmonkey.zip").catch(() => {});
-					this.setState({ downloadedBytes: info.size });
-					this.setState({ downloadProgess: Math.round((info.size / this.state.latestRelease.assets[0].size) * 100) });
+					if (info) {
+						this.setState({ installStatus: "Downloading..." });
+						this.setState({ downloadedBytes: info.size });
+						this.setState({ downloadProgess: Math.round((info.size / this.state.latestRelease.assets[0].size) * 100) });
+					}
 				}, 250);
-				downloadCmd.on("close", async (data) => {
-					console.log(`command finished with code ${data.code} and signal ${data.signal}`);
-					clearInterval(getFileSizeInter);
-					this.setState({ downloadedBytes: this.state.latestRelease.assets[0].size });
-					this.setState({ downloadProgess: 101 });
-					this.setState({ installStatus: "Installing..." });
+				await new Command("curl", ["-L", this.state.latestRelease.assets[0].browser_download_url, "-o", "missionmonkey.zip"], {
+					cwd: tempdirPath
+				}).execute();
+				clearInterval(getFileSizeInter);
+				this.setState({ downloadedBytes: this.state.latestRelease.assets[0].size });
+				this.setState({ downloadProgess: 101 });
+				this.setState({ installStatus: "Installing..." });
 
-					// UNZIP
-					this.setState({ downloadProgess: 101 });
-					this.setState({ installStatus: "Installing..." });
-					const { localDataDir } = require("@tauri-apps/api/path");
-					const localDataDirPath = await localDataDir();
-					await removeDir("mission-monkey", { dir: BaseDirectory.LocalData }).catch(() => {});
-					await createDir("mission-monkey", { dir: BaseDirectory.LocalData }).catch(() => {});
-					console.log(`${tempdirPath}missionmonkey.zip`);
-					const unzipCmd = new Command("tar", ["-xvmf", `${tempdirPath}missionmonkey.zip`.replace("\\", "\\\\")], { cwd: localDataDirPath + "mission-monkey" });
-					unzipCmd.on("close", (data) => {
-						console.log(`command finished with code ${data.code} and signal ${data.signal}`);
-						this.setState({ downloadProgess: -1 });
-					});
-					unzipCmd.stderr.on("data", (data) => console.log(data));
-					await unzipCmd.spawn();
-				});
-				await downloadCmd.spawn();
+				// UNZIP
+				this.setState({ downloadProgess: 101 });
+				this.setState({ installStatus: "Installing..." });
+				const { localDataDir } = require("@tauri-apps/api/path");
+				const localDataDirPath = await localDataDir();
+				await removeDir("mission-monkey", { dir: BaseDirectory.LocalData, recursive: true }).catch(() => {});
+				await createDir("mission-monkey", { dir: BaseDirectory.LocalData }).catch(() => {});
+				console.log(`${tempdirPath}missionmonkey.zip`);
+				await new Command("tar", ["-xvmf", `${tempdirPath}missionmonkey.zip`.replace("\\", "\\\\")], { cwd: localDataDirPath + "mission-monkey" }).execute();
+				await sleep(1000); // So that the old command can finish before the new one is started
+
+				// WRITE VERSION FILE
+				const gameDirFolders = await readDir("mission-monkey", { dir: BaseDirectory.LocalData });
+				await renameFile("mission-monkey\\" + gameDirFolders[0].name, "mission-monkey\\game", { dir: BaseDirectory.LocalData });
+				await writeTextFile("mission-monkey\\game\\version.txt", this.state.latestVersion, { dir: BaseDirectory.LocalData });
+				this.setState({ currentVersion: this.state.latestVersion });
+				this.setState({ downloadProgess: -1 });
 			}
 		};
 	}
@@ -99,9 +110,11 @@ export default class Home extends React.Component {
 						<div>
 							<button
 								className="p-2 rounded-md text-[#fff] dark:text-[#000] bg-accent-light dark:bg-accent-dark hover:bg-accent-light-hover hover:dark:bg-accent-dark-hover active:bg-accent-light-active active:dark:bg-accent-dark-active"
-								onClick={this.state.install}
+								onClick={() => {
+									this.state.currentVersion && this.state.currentVersion == this.state.latestVersion ? this.state.checkUpdate() : this.state.install();
+								}}
 							>
-								{this.state.currentVersion ? "Check for updates" : "Install"}
+								{this.state.currentVersion && this.state.currentVersion == this.state.latestVersion ? "Check for updates" : this.state.currentVersion ? "Install update" : "Install"}
 							</button>
 						</div>
 					</div>
