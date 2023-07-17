@@ -17,7 +17,7 @@
 			},
 			"fs": {
 				"all": true,
-				"scope": ["$DATA/**", "$LOCALDATA/**", "$TEMP/**"]
+				"scope": ["$DATA/**", "$LOCALDATA/**", "$TEMP/**", "$RESOURCE/**"]
 			},
 			"window": {
 				"all": true
@@ -54,8 +54,9 @@
 						"args": true
 					},
 					{
-						"name": "binaries/WinAccentColor",
-						"sidecar": true
+						"name": "winaccentcolor",
+						"cmd": "$APPLOCALDATA/WinAccentColor.exe",
+						"args": false
 					}
 				]
 			}
@@ -63,7 +64,7 @@
 		"bundle": {
 			"active": false,
 			"identifier": "com.lemonstudios.mminstaller",
-			"externalBin": ["binaries/WinAccentColor"]
+			"resources": ["binaries/WinAccentColor.exe"]
 		},
 		"security": {
 			"csp": "*",

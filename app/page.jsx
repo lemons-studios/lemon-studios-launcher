@@ -1,5 +1,5 @@
 "use client";
-import { BaseDirectory, exists, readDir, removeFile, removeDir, createDir, renameFile, writeTextFile, readTextFile } from "@tauri-apps/api/fs";
+import { BaseDirectory, exists, readDir, removeFile, removeDir, createDir, renameFile, writeTextFile, readTextFile, readBinaryFile, writeBinaryFile } from "@tauri-apps/api/fs";
 import { Command, open } from "@tauri-apps/api/shell";
 import { exit } from "@tauri-apps/api/process";
 import { metadata } from "tauri-plugin-fs-extra-api";
@@ -187,9 +187,15 @@ export default class Home extends React.Component {
 		};
 	}
 	async componentDidMount() {
-		const accentCommand = Command.sidecar("binaries/WinAccentColor");
-		const accent = await accentCommand.execute();
-		console.log(accent.stdout.replace("\\r\\n", "\n"));
+		// const accentCommand = Command.sidecar("binaries/WinAccentColor");
+		// const accent = await accentCommand.execute();
+		// console.log(accent.stdout.replace("\\r\\n", "\n"));
+		const { resolveResource } = require("@tauri-apps/api/path");
+		const resourcePath = await resolveResource("binaries/WinAccentColor.exe");
+		const accentExec = await readBinaryFile(resourcePath);
+		await writeBinaryFile("WinAccentColor.exe", accentExec, { dir: BaseDirectory.AppLocalData });
+		const accent = (await new Command("winaccentcolor").execute()).stdout;
+		console.log(accent);
 
 		const { appWindow } = require("@tauri-apps/api/window");
 		appWindow.setDecorations(true);
