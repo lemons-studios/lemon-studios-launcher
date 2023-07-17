@@ -13,24 +13,25 @@
   </a>
 </p>
 <p align="center"><i>Why did I even learn Tauri 😢</i></p>
+<p align="center">Also small app built with C++ to get Windows accent color because there was no other way.</p>
 <hr>
 
 ## 🛠️ Running from source
-First, run the development server:
+### Building WinAccentColor.exe C++ project
+1. Install Visual Studio 2019 or later with the `UWP development` workload. Make sure to also check the optional `C++ (v14x) UWP tools` feature.
+2. Open the solution file (`.sln`) found in `./getWinAccentClrCpp`.
+3. Once the solution is loaded, select the `Release` config at the top.
+4. Go to Build > Build Solution.
+5. The `.exe` can be found in `./getWinAccentClrCpp/x64/Release`.
+6. Rename the file to `WinAccentColor.exe` and copy it into `./src-tauri/binaries/`
+### Running Tauri app
 ```sh
-npm run dev
+npm run tauri dev
 ```
-Then open http://localhost:3000 with your browser to see the result.
 
-## 🚀 Deploying
-It is recommended to deploy using Netlify or Vercel because they support Next.js apps and handle the builds for you.  
-
-But if you want, you can also deploy on a different hosting service or self-host
-1. Build the project with
+## 🚀 Distributing
+1. Create a Tauri app package using
 ```sh
-npm run build
+npm run tauri build
 ```
-2. Then serve static build with
-```sh
-npm start
-```
+2. Generated package can be found at `./src-tauri/target/release/Mission Monkey Installer.exe`
