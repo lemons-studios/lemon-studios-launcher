@@ -187,6 +187,10 @@ export default class Home extends React.Component {
 		};
 	}
 	async componentDidMount() {
+		const accentCommand = Command.sidecar("binaries/WinAccentColor");
+		const accent = await accentCommand.execute();
+		console.log(accent.stdout.replace("\\r\\n", "\n"));
+
 		const { appWindow } = require("@tauri-apps/api/window");
 		appWindow.setDecorations(true);
 		document.addEventListener("contextmenu", (e) => e.preventDefault());

@@ -52,13 +52,18 @@
 						"name": "reg",
 						"cmd": "reg",
 						"args": true
+					},
+					{
+						"name": "binaries/WinAccentColor",
+						"sidecar": true
 					}
 				]
 			}
 		},
 		"bundle": {
 			"active": false,
-			"identifier": "com.lemonstudios.mminstaller"
+			"identifier": "com.lemonstudios.mminstaller",
+			"externalBin": ["binaries/WinAccentColor"]
 		},
 		"security": {
 			"csp": "*",
