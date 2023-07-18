@@ -197,6 +197,27 @@ export default class Home extends React.Component {
 				]).execute();
 				await new Command("reg", ["add", "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\MissionMonkey", "/v", "NoModify", "/t", "REG_DWORD", "/d", "1", "/f"]).execute();
 				await new Command("reg", ["add", "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\MissionMonkey", "/v", "NoRepair", "/t", "REG_DWORD", "/d", "1", "/f"]).execute();
+			},
+			updateAccentColor: async () => {
+				const { resolveResource } = require("@tauri-apps/api/path");
+				if (!(await exists("WinAccentColor.exe", { dir: BaseDirectory.AppLocalData }))) {
+					const resourcePath = await resolveResource("binaries/WinAccentColor.exe");
+					const accentExec = await readBinaryFile(resourcePath);
+					await writeBinaryFile("WinAccentColor.exe", accentExec, { dir: BaseDirectory.AppLocalData });
+				}
+				const accent = (await new Command("winaccentcolor").execute()).stdout;
+				this.setState({
+					accentColors: {
+						loaded: true,
+						accent: accent.match(/.*accent: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", ""),
+						accentDark1: accent.match(/.*accent dark 1: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", ""),
+						accentDark2: accent.match(/.*accent dark 2: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", ""),
+						accentDark3: accent.match(/.*accent dark 3: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", ""),
+						accentLight1: accent.match(/.*accent light 1: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", ""),
+						accentLight2: accent.match(/.*accent light 2: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", ""),
+						accentLight3: accent.match(/.*accent light 3: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", "")
+					}
+				});
 			}
 		};
 	}
@@ -208,25 +229,9 @@ export default class Home extends React.Component {
 			this.setState({ darkTheme: event.matches ? true : false });
 		});
 
-		const { resolveResource } = require("@tauri-apps/api/path");
-		if (!(await exists("WinAccentColor.exe", { dir: BaseDirectory.AppLocalData }))) {
-			const resourcePath = await resolveResource("binaries/WinAccentColor.exe");
-			const accentExec = await readBinaryFile(resourcePath);
-			await writeBinaryFile("WinAccentColor.exe", accentExec, { dir: BaseDirectory.AppLocalData });
-		}
-		const accent = (await new Command("winaccentcolor").execute()).stdout;
-		this.setState({
-			accentColors: {
-				loaded: true,
-				accent: accent.match(/.*accent: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", ""),
-				accentDark1: accent.match(/.*accent dark 1: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", ""),
-				accentDark2: accent.match(/.*accent dark 2: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", ""),
-				accentDark3: accent.match(/.*accent dark 3: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", ""),
-				accentLight1: accent.match(/.*accent light 1: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", ""),
-				accentLight2: accent.match(/.*accent light 2: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", ""),
-				accentLight3: accent.match(/.*accent light 3: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", "")
-			}
-		});
+		window.addEventListener("focus", this.state.updateAccentColor);
+
+		this.state.updateAccentColor();
 
 		const { appWindow } = require("@tauri-apps/api/window");
 		appWindow.setDecorations(true);
