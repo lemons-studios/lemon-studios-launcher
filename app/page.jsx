@@ -5,7 +5,9 @@ import { exit } from "@tauri-apps/api/process";
 import { metadata } from "tauri-plugin-fs-extra-api";
 
 import React from "react";
-import { Settings20Regular } from "@fluentui/react-icons";
+import { ArrowLeft16Regular, ArrowLeft20Regular, Settings20Regular } from "@fluentui/react-icons";
+
+import { Settings } from "./settings.jsx";
 
 function sleep(ms) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
@@ -26,6 +28,7 @@ export default class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			screen: "home",
 			darkTheme: false,
 			accentColors: {
 				loaded: false,
@@ -233,90 +236,146 @@ export default class Home extends React.Component {
 	}
 	render() {
 		return (
-			<main
-				style={{
-					display: this.state.accentColors.loaded ? "" : "none"
-				}}
-				className="p-8 text-sm h-screen w-screen"
-			>
-				<div className="bg-[#fff4] dark:bg-[#fff1] rounded-md border border-[#22222218] p-3">
-					<p className="text-lg font-medium">Installation</p>
-					<div className="flex justify-between">
-						<div>
-							<p>Latest version: {this.state.latestVersion || "Unknown"}</p>
-							<p>Installed: {this.state.currentVersion || "Unknown"}</p>
+			<>
+				<main
+					id="home"
+					className="p-8 text-sm h-screen w-screen flex flex-col gap-2"
+					style={{
+						display: this.state.accentColors.loaded && this.state.screen == "home" ? "" : "none"
+					}}
+				>
+					<div className="page bg-[#fff4] dark:bg-[#fff1] rounded-md border border-[#22222218] p-3">
+						<p className="text-lg font-medium">Game</p>
+						<div className="flex justify-between">
+							<div>
+								<p>Latest version: {this.state.latestVersion || "Unknown"}</p>
+								<p>Installed: {this.state.currentVersion || "Unknown"}</p>
+							</div>
+							<div>
+								<button
+									style={{
+										backgroundColor: this.state.darkTheme ? this.state.accentColors.accentLight2 : this.state.accentColors.accentDark1
+									}}
+									className={`p-2 rounded-md text-[#fff] dark:text-[#000] hover:brightness-110 hover:dark:brightness-90 active:brightness-125 active:dark:brightness-75`}
+									onClick={() => {
+										this.state.currentVersion && this.state.currentVersion == this.state.latestVersion ? this.state.checkUpdate() : this.state.install();
+									}}
+								>
+									{this.state.currentVersion && this.state.currentVersion == this.state.latestVersion
+										? "Check for updates"
+										: this.state.currentVersion
+										? "Install update"
+										: "Install"}
+								</button>
+							</div>
 						</div>
-						<div>
-							<button
-								style={{
-									backgroundColor: this.state.darkTheme ? this.state.accentColors.accentLight2 : this.state.accentColors.accentDark1
-								}}
-								className={`p-2 rounded-md text-[#fff] dark:text-[#000] hover:brightness-110 hover:dark:brightness-90 active:brightness-125 active:dark:brightness-75`}
-								onClick={() => {
-									this.state.currentVersion && this.state.currentVersion == this.state.latestVersion ? this.state.checkUpdate() : this.state.install();
-								}}
-							>
-								{this.state.currentVersion && this.state.currentVersion == this.state.latestVersion ? "Check for updates" : this.state.currentVersion ? "Install update" : "Install"}
-							</button>
+
+						<div
+							style={{
+								display: this.state.downloadProgess > -1 ? "block" : "none"
+							}}
+						>
+							<div className="relative w-full h-1 mt-3 rounded-full bg-[#8883] overflow-hidden">
+								<div
+									style={{
+										width: this.state.downloadProgess > -1 ? `${this.state.downloadProgess}%` : "0%",
+										backgroundColor: this.state.darkTheme ? this.state.accentColors.accentLight2 : this.state.accentColors.accentDark1
+									}}
+									className={(this.state.downloadProgess > 100 ? "indeterminate-pb " : "") + "absolute h-full rounded-full transition-all"}
+								></div>
+							</div>
+							<div className="flex justify-between text-xs mt-1">
+								<p>{this.state.installStatus}</p>
+								<p
+									style={{
+										display: this.state.downloadProgess < 101 ? "" : "none"
+									}}
+								>
+									{this.state.downloadProgess}% ({getReadableFileSizeString(this.state.downloadedBytes)}/{getReadableFileSizeString(this.state.totalBytes)})
+								</p>
+							</div>
 						</div>
 					</div>
 
-					<div
-						style={{
-							display: this.state.downloadProgess > -1 ? "block" : "none"
-						}}
-					>
-						<div className="relative w-full h-1 mt-3 rounded-full bg-[#8883] overflow-hidden">
-							<div
-								style={{
-									width: this.state.downloadProgess > -1 ? `${this.state.downloadProgess}%` : "0%"
-								}}
-								className={(this.state.downloadProgess > 100 ? "indeterminate-pb " : "") + "absolute h-full bg-accent-light dark:bg-accent-dark rounded-full transition-all"}
-							></div>
-						</div>
-						<div className="flex justify-between text-xs mt-1">
-							<p>{this.state.installStatus}</p>
-							<p
-								style={{
-									display: this.state.downloadProgess < 101 ? "" : "none"
-								}}
-							>
-								{this.state.downloadProgess}% ({getReadableFileSizeString(this.state.downloadedBytes)}/{getReadableFileSizeString(this.state.totalBytes)})
-							</p>
-						</div>
+					<div className="bg-[#fff4] dark:bg-[#fff1] rounded-md border border-[#22222218] p-3">
+						<p className="text-lg font-medium">Patch notes</p>
 					</div>
-				</div>
 
-				<div className="absolute bottom-6 left-6 flex gap-2">
-					<button className="p-2 rounded-md bg-[#fff4] dark:bg-[#fff1] active:opacity-75 border border-[#22222218]">
-						<Settings20Regular />
-					</button>
-				</div>
+					<div className="absolute bottom-6 left-6 flex gap-2">
+						<button
+							className="rounded-md bg-[#fff4] dark:bg-[#fff1] active:opacity-75 border border-[#22222218]"
+							onClick={() => {
+								setTimeout(() => {
+									this.setState({ screen: "settings" });
+								}, 100);
+							}}
+						>
+							<Settings20Regular
+								style={{
+									width: "36px",
+									height: "36px",
+									padding: "8px"
+								}}
+								className="active:-rotate-180 rotate-180 transition-all duration-300 ease-out"
+							/>
+						</button>
+					</div>
 
-				<div className="absolute bottom-6 right-6 flex gap-2">
-					<button
-						className="p-2 rounded-md bg-[#fff4] dark:bg-[#fff1] active:opacity-75 border border-[#22222218]"
-						onClick={async () => {
-							await exit();
-						}}
-					>
-						Quit launcher
-					</button>
-					<button
-						style={{
-							backgroundColor: this.state.darkTheme ? this.state.accentColors.accentLight2 : this.state.accentColors.accentDark1
-						}}
-						className={`p-2 rounded-md text-[#fff] dark:text-[#000] hover:brightness-110 hover:dark:brightness-90 active:brightness-125 active:dark:brightness-75`}
-						onClick={() => {
-							if (this.state.gameExePath) {
-								open(this.state.gameExePath);
-							}
-						}}
-					>
-						Launch game
-					</button>
-				</div>
-			</main>
+					<div className="absolute bottom-6 right-6 flex gap-2">
+						<button
+							className="p-2 rounded-md bg-[#fff4] dark:bg-[#fff1] active:opacity-75 border border-[#22222218]"
+							onClick={async () => {
+								await exit();
+							}}
+						>
+							Quit launcher
+						</button>
+						<button
+							style={{
+								backgroundColor: this.state.darkTheme ? this.state.accentColors.accentLight2 : this.state.accentColors.accentDark1
+							}}
+							className={`p-2 rounded-md text-[#fff] dark:text-[#000] hover:brightness-110 hover:dark:brightness-90 active:brightness-125 active:dark:brightness-75`}
+							onClick={() => {
+								if (this.state.gameExePath) {
+									open(this.state.gameExePath);
+								}
+							}}
+						>
+							Launch game
+						</button>
+					</div>
+				</main>
+
+				<main
+					id="settings"
+					className="p-8 pt-16 text-sm h-screen w-screen flex flex-col gap-2"
+					style={{
+						display: this.state.accentColors.loaded && this.state.screen == "settings" ? "" : "none"
+					}}
+				>
+					<div className="absolute top-4 left-6 flex gap-3 items-center">
+						<button
+							className="rounded-md bg-[#8880] dark:bg-[#8880] hover:bg-[#8883] active:bg-[#8882] border border-[#22222218]"
+							onClick={() => {
+								setTimeout(() => {
+									this.setState({ screen: "home" });
+								}, 100);
+							}}
+						>
+							<ArrowLeft16Regular
+								style={{
+									width: "32px",
+									height: "32px",
+									padding: "8px"
+								}}
+								className="origin-right active:scale-x-90 transition-all ease-bounce duration-300"
+							/>
+						</button>
+						<p className="text-2xl font-medium">Settings</p>
+					</div>
+					<Settings />
+				</main>
+			</>
 		);
 	}
 }

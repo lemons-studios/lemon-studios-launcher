@@ -8,11 +8,12 @@
 
 @keyframes pageOpen {
 	0% {
-		transform: translateY(50px);
-		opacity: 0.3;
+		transform: translateY(30px);
+		opacity: 0;
 	}
 	100% {
 		transform: translateY(0px);
+		opacity: 1;
 	}
 }
 
@@ -37,7 +38,7 @@
 }
 
 main {
-	animation: pageOpen 0.3s ease-out;
+	animation: pageOpen 0.2s ease-out;
 }
 
 body {

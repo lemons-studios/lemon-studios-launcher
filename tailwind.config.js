@@ -4,7 +4,10 @@ import colors from "tailwindcss/colors";
 export const content = ["./pages/**/*.{js,ts,jsx,tsx,mdx}", "./components/**/*.{js,ts,jsx,tsx,mdx}", "./app/**/*.{js,ts,jsx,tsx,mdx}"];
 export const theme = {
 	extend: {
-		backgroundColor: "#1f2937"
+		backgroundColor: "#1f2937",
+		transitionTimingFunction: {
+			bounce: "cubic-bezier(0,0,.2,3)"
+		}
 	},
 	colors: {
 		transparent: "transparent",
