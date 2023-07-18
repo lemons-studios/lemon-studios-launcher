@@ -26,6 +26,17 @@ export default class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			darkTheme: false,
+			accentColors: {
+				loaded: false,
+				accent: "rgb(0,120,212)",
+				accentDark1: "rgb(0,103,192)",
+				accentDark2: "rgb(0,62,146)",
+				accentDark3: "rgb(0,62,146)",
+				accentLight1: "rgb(0,145,248)",
+				accentLight2: "rgb(76,194,255)",
+				accentLight3: "rgb(153,235,255)"
+			},
 			downloadProgess: -1,
 			totalBytes: 0,
 			downloadedBytes: 0,
@@ -187,15 +198,32 @@ export default class Home extends React.Component {
 		};
 	}
 	async componentDidMount() {
-		// const accentCommand = Command.sidecar("binaries/WinAccentColor");
-		// const accent = await accentCommand.execute();
-		// console.log(accent.stdout.replace("\\r\\n", "\n"));
+		if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+			this.setState({ darkTheme: true });
+		}
+		window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (event) => {
+			this.setState({ darkTheme: event.matches ? true : false });
+		});
+
 		const { resolveResource } = require("@tauri-apps/api/path");
-		const resourcePath = await resolveResource("binaries/WinAccentColor.exe");
-		const accentExec = await readBinaryFile(resourcePath);
-		await writeBinaryFile("WinAccentColor.exe", accentExec, { dir: BaseDirectory.AppLocalData });
+		if (!(await exists("WinAccentColor.exe", { dir: BaseDirectory.AppLocalData }))) {
+			const resourcePath = await resolveResource("binaries/WinAccentColor.exe");
+			const accentExec = await readBinaryFile(resourcePath);
+			await writeBinaryFile("WinAccentColor.exe", accentExec, { dir: BaseDirectory.AppLocalData });
+		}
 		const accent = (await new Command("winaccentcolor").execute()).stdout;
-		console.log(accent);
+		this.setState({
+			accentColors: {
+				loaded: true,
+				accent: accent.match(/.*accent: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", ""),
+				accentDark1: accent.match(/.*accent dark 1: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", ""),
+				accentDark2: accent.match(/.*accent dark 2: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", ""),
+				accentDark3: accent.match(/.*accent dark 3: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", ""),
+				accentLight1: accent.match(/.*accent light 1: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", ""),
+				accentLight2: accent.match(/.*accent light 2: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", ""),
+				accentLight3: accent.match(/.*accent light 3: (rgb\(\d{1,3}, ?\d{1,3}, ?\d{1,3}\))/i)[1].replaceAll(" ", "")
+			}
+		});
 
 		const { appWindow } = require("@tauri-apps/api/window");
 		appWindow.setDecorations(true);
@@ -205,7 +233,12 @@ export default class Home extends React.Component {
 	}
 	render() {
 		return (
-			<main className="p-8 text-sm h-screen w-screen">
+			<main
+				style={{
+					display: this.state.accentColors.loaded ? "" : "none"
+				}}
+				className="p-8 text-sm h-screen w-screen"
+			>
 				<div className="bg-[#fff4] dark:bg-[#fff1] rounded-md border border-[#22222218] p-3">
 					<p className="text-lg font-medium">Installation</p>
 					<div className="flex justify-between">
@@ -215,7 +248,10 @@ export default class Home extends React.Component {
 						</div>
 						<div>
 							<button
-								className="p-2 rounded-md text-[#fff] dark:text-[#000] bg-accent-light dark:bg-accent-dark hover:bg-accent-light-hover hover:dark:bg-accent-dark-hover active:bg-accent-light-active active:dark:bg-accent-dark-active"
+								style={{
+									backgroundColor: this.state.darkTheme ? this.state.accentColors.accentLight2 : this.state.accentColors.accentDark1
+								}}
+								className={`p-2 rounded-md text-[#fff] dark:text-[#000] hover:brightness-110 hover:dark:brightness-90 active:brightness-125 active:dark:brightness-75`}
 								onClick={() => {
 									this.state.currentVersion && this.state.currentVersion == this.state.latestVersion ? this.state.checkUpdate() : this.state.install();
 								}}
@@ -267,7 +303,10 @@ export default class Home extends React.Component {
 						Quit launcher
 					</button>
 					<button
-						className="p-2 rounded-md text-[#fff] dark:text-[#000] bg-accent-light dark:bg-accent-dark hover:bg-accent-light-hover hover:dark:bg-accent-dark-hover active:bg-accent-light-active active:dark:bg-accent-dark-active"
+						style={{
+							backgroundColor: this.state.darkTheme ? this.state.accentColors.accentLight2 : this.state.accentColors.accentDark1
+						}}
+						className={`p-2 rounded-md text-[#fff] dark:text-[#000] hover:brightness-110 hover:dark:brightness-90 active:brightness-125 active:dark:brightness-75`}
 						onClick={() => {
 							if (this.state.gameExePath) {
 								open(this.state.gameExePath);

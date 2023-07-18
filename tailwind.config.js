@@ -7,14 +7,8 @@ export const theme = {
 		backgroundColor: "#1f2937"
 	},
 	colors: {
-		"transparent": "transparent",
-		"current": "currentColor",
-		"accent-light": "#0067c0",
-		"accent-light-hover": "#1975c5",
-		"accent-light-active": "#3183ca",
-		"accent-dark": "#4cc2ff",
-		"accent-dark-hover": "#47b1e8",
-		"accent-dark-active": "#42a1d2"
+		transparent: "transparent",
+		current: "currentColor"
 	},
 	screens: {
 		sm: "480px",
