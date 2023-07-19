@@ -10,5 +10,8 @@
 .winui-checkbox-checkmark {
 	height: 100%;
 	overflow: clip;
-	animation: wipe-ltr 0.3s ease-in;
+	animation: wipe-ltr 0.25s ease-in;
+}
+.winui-checkbox-checkmark * {
+	color: inherit;
 }

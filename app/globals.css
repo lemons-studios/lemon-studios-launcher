@@ -4,6 +4,7 @@
 
 * {
 	font-family: system-ui;
+	cursor: default !important;
 }
 
 @keyframes pageOpen {

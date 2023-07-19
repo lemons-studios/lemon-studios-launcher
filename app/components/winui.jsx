@@ -7,16 +7,16 @@ export function Checkbox(props) {
 	return (
 		<div
 			style={{
-				borderColor: checked ? "transparent" : "#8883"
+				borderColor: checked ? "#8880" : "#888a"
 			}}
-			className="w-5 h-5 border rounded-md"
+			className="w-5 h-5 border rounded-md hover:bg-[#8881] active:bg-[#8882] active:opacity-40"
 		>
 			<button
 				style={{
 					color: props.color,
 					background: checked ? props.color : "transparent"
 				}}
-				className="winui-checkbox w-5 h-5 rounded-md"
+				className="winui-checkbox w-5 h-5 -translate-x-[1px] -translate-y-[1px] rounded-md hover:brightness-110 hover:dark:brightness-90 active:brightness-125 active:dark:brightness-75"
 				onClick={() => {
 					setChecked(!checked);
 				}}
@@ -31,7 +31,7 @@ export function Checkbox(props) {
 						style={{
 							color: props.color
 						}}
-						className="bg-[#fff] -mt-1 scale-[1.4]"
+						className="bg-[#fff] dark:bg-[#222] -mt-1 scale-[1.4]"
 					/>
 				</div>
 			</button>
