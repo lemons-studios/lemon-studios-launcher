@@ -37,6 +37,15 @@
 	animation: indeterminatePb 3s ease-in-out infinite;
 }
 
+* {
+	transition: all 0.1s;
+}
+
+button:disabled {
+	filter: brightness(1) !important;
+	background-color: #8888 !important;
+}
+
 main {
 	animation: pageOpen 0.2s ease-out;
 }
