@@ -5,12 +5,7 @@ import "./checkbox.css";
 export function Checkbox(props) {
 	const [checked, setChecked] = useState(false);
 	return (
-		<div
-			style={{
-				borderColor: checked ? "#8880" : "#888a"
-			}}
-			className="w-5 h-5 border rounded-md hover:bg-[#8881] active:bg-[#8882] active:opacity-40"
-		>
+		<div className={(checked ? "border-[#8880] " : "border-[#888a] active:opacity-40 ") + "w-5 h-5 border rounded-md hover:bg-[#8881] active:bg-[#8882]"}>
 			<button
 				style={{
 					color: props.color,
