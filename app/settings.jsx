@@ -1,4 +1,5 @@
 import React from "react";
+import { Checkbox } from "./components/winui.jsx";
 
 export class Settings extends React.Component {
 	constructor(props) {

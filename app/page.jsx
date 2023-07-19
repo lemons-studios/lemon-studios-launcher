@@ -8,7 +8,6 @@ import React from "react";
 import { ArrowLeft16Regular, ArrowLeft20Regular, Settings20Regular } from "@fluentui/react-icons";
 
 import { Settings } from "./settings.jsx";
-import { Checkbox } from "./components/winui.jsx";
 
 function sleep(ms) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
