@@ -391,7 +391,10 @@ export default class Home extends React.Component {
 						</button>
 						<p className="text-2xl font-medium">Settings</p>
 					</div>
-					<Settings />
+					<Settings
+						colors={this.state.accentColors}
+						dark={this.state.darkTheme}
+					/>
 				</main>
 			</>
 		);

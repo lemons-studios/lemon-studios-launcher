@@ -13,7 +13,7 @@ export class Settings extends React.Component {
 		return (
 			<>
 				<p className="text-xl font-medium">Installation</p>
-				<Checkbox color={this.state.darkTheme ? this.state.accentColors.accentLight2 : this.state.accentColors.accentDark1} />
+				<Checkbox color={this.props.dark ? this.props.colors.accentLight2 : this.props.colors.accentDark1} />
 			</>
 		);
 	}
