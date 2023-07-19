@@ -1,0 +1,14 @@
+@keyframes wipe-ltr {
+	0% {
+		width: 0%;
+	}
+	100% {
+		width: 100%;
+	}
+}
+
+.winui-checkbox-checkmark {
+	height: 100%;
+	overflow: clip;
+	animation: wipe-ltr 0.3s ease-in;
+}
