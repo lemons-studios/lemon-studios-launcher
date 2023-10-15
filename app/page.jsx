@@ -84,7 +84,7 @@ export default class Home extends React.Component {
 					const { tempdir } = require("@tauri-apps/api/os");
 					const tempdirPath = await tempdir();
 					await removeFile("missionmonkey.zip", { dir: BaseDirectory.Temp }).catch(() => {});
-					this.setState({ totalBytes: this.state.latestRelease.assets[0].size });
+					this.setState({ totalBytes: this.state.latestRelease.assets.filter((e) => e.browser_download_url.toLowerCase().includes("win"))[0].size });
 
 					// DOWNLOAD
 					var getFileSizeInter = setInterval(async () => {
@@ -92,16 +92,22 @@ export default class Home extends React.Component {
 						if (info) {
 							this.setState({ installStatus: "Downloading..." });
 							this.setState({ downloadedBytes: info.size });
-							this.setState({ downloadProgess: Math.round((info.size / this.state.latestRelease.assets[0].size) * 100) });
+							this.setState({
+								downloadProgess: Math.round((info.size / this.state.latestRelease.assets.filter((e) => e.browser_download_url.toLowerCase().includes("win"))[0].size) * 100)
+							});
 						}
 					}, 250);
-					await new Command("curl", ["-L", this.state.latestRelease.assets[0].browser_download_url, "-o", "missionmonkey.zip"], {
-						cwd: tempdirPath
-					}).execute();
+					await new Command(
+						"curl",
+						["-L", this.state.latestRelease.assets.filter((e) => e.browser_download_url.toLowerCase().includes("win"))[0].browser_download_url, "-o", "missionmonkey.zip"],
+						{
+							cwd: tempdirPath
+						}
+					).execute();
 					clearInterval(getFileSizeInter);
 
 					// START COPYING FILES
-					this.setState({ downloadedBytes: this.state.latestRelease.assets[0].size });
+					this.setState({ downloadedBytes: this.state.latestRelease.assets.filter((e) => e.browser_download_url.toLowerCase().includes("win"))[0].size });
 					this.setState({ downloadProgess: 101 });
 					this.setState({ installStatus: "Installing..." });
 
