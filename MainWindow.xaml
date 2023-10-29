@@ -9,8 +9,16 @@
     mc:Ignorable="d"
     Title="Mission: Monkey Installer">
 
-    <StackPanel>
-        <Grid x:Name="AppTitleBar" Height="48">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="AppTitleBar" Height="48" Grid.Row="0" Grid.Column="0">
             <Image Source="Assets/StoreLogo.png"
            HorizontalAlignment="Left" 
            Width="20" Height="20" 
@@ -21,5 +29,13 @@
                VerticalAlignment="Center"
                Margin="48,0,0,0"/>
         </Grid>
-    </StackPanel>
+        <NavigationView Grid.Row="1" Grid.Column="0" IsBackButtonVisible="Collapsed">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Home" Icon="Home" TabNavigation="Once"/>
+                <NavigationViewItem Content="Installation" Icon="Repair" TabNavigation="Once"/>
+            </NavigationView.MenuItems>
+
+            <Frame x:Name="ContentFrame"/>
+        </NavigationView>
+    </Grid>
 </Window>
