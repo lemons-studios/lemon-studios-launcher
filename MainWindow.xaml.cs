@@ -41,6 +41,9 @@ namespace Launcher
             // Remove ugly black background on buttons
             m_AppWindow.TitleBar.ButtonBackgroundColor = Colors.Transparent;
             m_AppWindow.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+
+            // Navigate to home page by default
+            ContentFrame.Navigate(typeof(HomePage));
         }
 
         private AppWindow GetAppWindowForCurrentWindow()
