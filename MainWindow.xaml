@@ -29,7 +29,7 @@
                VerticalAlignment="Center"
                Margin="48,0,0,0"/>
         </Grid>
-        <NavigationView Grid.Row="1" Grid.Column="0" IsBackButtonVisible="Collapsed">
+        <NavigationView Grid.Row="1" Grid.Column="0" IsBackButtonVisible="Collapsed" PaneDisplayMode="Top" SelectionChanged="NavigationView_SelectionChanged">
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Home" Icon="Home" TabNavigation="Once"/>
                 <NavigationViewItem Content="Installation" Icon="Repair" TabNavigation="Once"/>

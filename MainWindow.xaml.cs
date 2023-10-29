@@ -68,5 +68,21 @@ namespace Launcher
             }
             // Acrylic isnt supported so no effect is applied
         }
+
+        private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            if (args.IsSettingsSelected)
+            {
+                ContentFrame.Navigate(typeof(SettingsPage));
+            }
+            else if (args.SelectedItemContainer.Content.ToString() == "Home")
+            {
+                ContentFrame.Navigate(typeof(HomePage));
+            }
+            else if (args.SelectedItemContainer.Content.ToString() == "Installation")
+            {
+                ContentFrame.Navigate(typeof(InstallationPage));
+            }
+        }
     }
 }
