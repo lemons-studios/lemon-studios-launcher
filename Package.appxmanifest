@@ -15,7 +15,7 @@
 	<mp:PhoneIdentity PhoneProductId="385268a6-de1a-4303-8e56-13a25c20ea12" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
 	<Properties>
-		<DisplayName>Installer</DisplayName>
+		<DisplayName>Mission: Monkey Launcher</DisplayName>
 		<PublisherDisplayName>ChakornK</PublisherDisplayName>
 		<Logo>Assets\StoreLogo.png</Logo>
 	</Properties>
@@ -34,8 +34,8 @@
 		  Executable="$targetnametoken$.exe"
 		  EntryPoint="$targetentrypoint$">
 			<uap:VisualElements
-			  DisplayName="Installer"
-			  Description="Installer"
+			  DisplayName="Mission: Monkey Launcher"
+			  Description="Make launching and updating Mission: Monkey hassle-free"
 			  BackgroundColor="transparent"
 			  Square150x150Logo="Assets\Square150x150Logo.png"
 			  Square44x44Logo="Assets\Square44x44Logo.png">
@@ -45,7 +45,7 @@
 				<uap:InitialRotationPreference>
 					<uap:Rotation Preference="landscape"/>
 				</uap:InitialRotationPreference>
-				<uap:LockScreen BadgeLogo="Assets\BadgeLogo.png" Notification="badge"/>
+				<uap:LockScreen BadgeLogo="Assets\BadgeLogo.png"  Notification="badge"/>
 			</uap:VisualElements>
 		</Application>
 	</Applications>
