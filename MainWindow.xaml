@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Window
-    x:Class="Installer.MainWindow"
+    x:Class="Launcher.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Installer"
+    xmlns:local="using:Launcher"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Title="Mission: Monkey Installer">
+    Title="Mission: Monkey Launcher">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -23,7 +23,7 @@
            HorizontalAlignment="Left" 
            Width="20" Height="20" 
            Margin="16,0"/>
-            <TextBlock x:Name="AppTitleTextBlock" Text="Mission: Monkey Installer"
+            <TextBlock x:Name="AppTitleTextBlock" Text="Mission: Monkey Launcher"
                TextWrapping="NoWrap"
                Style="{StaticResource CaptionTextBlockStyle}" 
                VerticalAlignment="Center"

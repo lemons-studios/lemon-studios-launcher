@@ -1,9 +1,9 @@
 {
   "profiles": {
-    "Installer (Package)": {
+    "Launcher (Package)": {
       "commandName": "MsixPackage"
     },
-    "Installer (Unpackaged)": {
+    "Launcher (Unpackaged)": {
       "commandName": "Project"
     }
   }
