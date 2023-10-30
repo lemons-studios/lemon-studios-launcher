@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Window
+<winex:WindowEx
+    xmlns:winex="using:WinUIEx"
     x:Class="Launcher.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -7,9 +8,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Title="Mission: Monkey Launcher">
+    Title="Mission: Monkey Launcher"
+    MinHeight="480"
+    MinWidth="720"
+    Height="640"
+    Width="960"
+    >
 
-    <Grid>
+    <Grid
+        Background="{ThemeResource LayerOnMicaBaseAltFillColorTransparent}" x:Name="MainAppWindow">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
@@ -38,4 +45,4 @@
             <Frame x:Name="ContentFrame"/>
         </NavigationView>
     </Grid>
-</Window>
+</winex:WindowEx>

@@ -9,7 +9,34 @@
     mc:Ignorable="d"
     Background="{ThemeResource LayerOnMicaBaseAltFillColorTransparentBrush}">
 
-    <Grid>
-        <TextBlock>Settings</TextBlock>
-    </Grid>
+    <StackPanel Orientation="Vertical" Padding="48, 24" Spacing="4">
+        <TextBlock Style="{StaticResource TitleLargeTextBlockStyle}" Margin="0, 0, 0, 20">Settings</TextBlock>
+        <Expander
+            IsExpanded="False"
+            ExpandDirection="Down"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Stretch"
+            HorizontalContentAlignment="Left"
+            Padding="48, 0, 0, 12"
+        >
+            <Expander.Header>
+                <StackPanel Height="54" Orientation="Horizontal" Spacing="16">
+                    <!-- https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font -->
+                    <!-- "color" icon -->
+                    <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE790;"/>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}">App Theme</TextBlock>
+                        <TextBlock Style="{StaticResource CaptionTextBlockStyle}" Opacity="0.8">Select which app theme to display</TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </Expander.Header>
+
+            <RadioButtons x:Name="ThemeRadioButtons" SelectedIndex="0" SelectionChanged="ThemeRadioButtons_SelectionChanged">
+                <x:String>Light</x:String>
+                <x:String>Dark</x:String>
+                <x:String>Use system setting</x:String>
+            </RadioButtons>
+        </Expander>
+
+    </StackPanel>
 </Page>

@@ -14,6 +14,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using WinRT.Interop;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -24,9 +25,13 @@ namespace Launcher
     /// <summary>
     /// An empty window that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainWindow : Window
+
+    public sealed partial class MainWindow : WinUIEx.WindowEx
     {
         private AppWindow m_AppWindow;
+
+        // Initialize storage
+        private Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
         public MainWindow()
         {
@@ -44,6 +49,40 @@ namespace Launcher
 
             // Navigate to home page by default
             ContentFrame.Navigate(typeof(HomePage));
+
+            // WORKAROUND: Recieve event from SettingsPage to reload theme
+            // TODO: This can probably be improved
+            Windows.Storage.ApplicationData.Current.DataChanged += new TypedEventHandler<Windows.Storage.ApplicationData, object>(DataChangeHandler);
+            // Reload theme
+            Windows.Storage.ApplicationData.Current.SignalDataChanged();
+        }
+
+        private void DataChangeHandler(Windows.Storage.ApplicationData appData, object o)
+        {
+            string theme;
+            if (localSettings.Values["theme"] != null)
+            {
+                theme = localSettings.Values["theme"].ToString() ?? "system";
+            }
+            else
+            {
+                theme = "system";
+            }
+            DispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, () =>
+            {
+                switch (theme.ToLower())
+                {
+                    case "light":
+                        MainAppWindow.RequestedTheme = ElementTheme.Light;
+                        break;
+                    case "dark":
+                        MainAppWindow.RequestedTheme = ElementTheme.Dark;
+                        break;
+                    case "system":
+                        MainAppWindow.RequestedTheme = ElementTheme.Default;
+                        break;
+                }
+            });
         }
 
         private AppWindow GetAppWindowForCurrentWindow()
