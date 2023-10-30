@@ -9,7 +9,33 @@
     mc:Ignorable="d"
     Background="{ThemeResource LayerOnMicaBaseAltFillColorTransparentBrush}">
 
-    <Grid>
-        <TextBlock>Mission: Monkey</TextBlock>
-    </Grid>
+    <ScrollView>
+
+        <StackPanel Orientation="Vertical" Padding="48, 24" Spacing="8">
+            <StackPanel x:Name="ImageBanner" CornerRadius="12">
+                <Image Source="Assets/banner.png" />
+            </StackPanel>
+
+            <Button x:Name="LaunchGameButton" HorizontalAlignment="Center" FontSize="{StaticResource SubtitleTextBlockFontSize}" Style="{StaticResource AccentButtonStyle}" Padding="16, 8" Margin="0, 8, 0, 0">
+                Launch Game
+            </Button>
+
+            <NavigationViewItemSeparator Margin="0, 12"/>
+
+            <TextBlock FontSize="{StaticResource TitleTextBlockFontSize}">News</TextBlock>
+            <StackPanel Background="{ThemeResource LayerOnMicaBaseAltFillColorSecondaryBrush}" Padding="16" CornerRadius="4">
+                <TextBlock FontSize="{StaticResource SubtitleTextBlockFontSize}">Sample</TextBlock>
+                <TextBlock>Lorem ipsum</TextBlock>
+            </StackPanel>
+            <StackPanel Background="{ThemeResource LayerOnMicaBaseAltFillColorSecondaryBrush}" Padding="16" CornerRadius="4">
+                <TextBlock FontSize="{StaticResource SubtitleTextBlockFontSize}">Sample</TextBlock>
+                <TextBlock>Lorem ipsum</TextBlock>
+            </StackPanel>
+            <StackPanel Background="{ThemeResource LayerOnMicaBaseAltFillColorSecondaryBrush}" Padding="16" CornerRadius="4">
+                <TextBlock FontSize="{StaticResource SubtitleTextBlockFontSize}">Sample</TextBlock>
+                <TextBlock>Lorem ipsum</TextBlock>
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollView>
 </Page>
