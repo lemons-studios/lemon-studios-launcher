@@ -53,7 +53,7 @@ namespace Launcher
             // WORKAROUND: Recieve event from SettingsPage to reload theme
             // TODO: This can probably be improved
             Windows.Storage.ApplicationData.Current.DataChanged += new TypedEventHandler<Windows.Storage.ApplicationData, object>(DataChangeHandler);
-            // Reload theme
+            // Load theme
             Windows.Storage.ApplicationData.Current.SignalDataChanged();
         }
 
