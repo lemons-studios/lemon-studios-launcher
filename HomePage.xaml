@@ -15,8 +15,13 @@
                 <Image Source="Assets/banner.png" />
             </StackPanel>
 
-            <Button x:Name="LaunchGameButton" HorizontalAlignment="Center" FontSize="{StaticResource SubtitleTextBlockFontSize}" Style="{StaticResource AccentButtonStyle}" Padding="16, 8" Margin="0, 8, 0, 0">
-                Launch Game
+            <Button x:Name="LaunchGameButton" HorizontalAlignment="Center" Style="{StaticResource AccentButtonStyle}" Padding="16, 8" Margin="0, 8, 0, 0">
+                <!-- https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font -->
+                <!-- "play" icon -->
+                <StackPanel Orientation="Horizontal" Spacing="12">
+                    <FontIcon FontSize="{StaticResource SubtitleTextBlockFontSize}" FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe768;"/>
+                    <TextBlock FontSize="{StaticResource SubtitleTextBlockFontSize}">Launch Game</TextBlock>
+                </StackPanel>
             </Button>
 
             <NavigationViewItemSeparator Margin="0, 12"/>
