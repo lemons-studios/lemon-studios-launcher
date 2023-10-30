@@ -9,8 +9,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource LayerOnMicaBaseAltFillColorTransparentBrush}">
 
-    <ScrollView>
-
+    <ScrollView VerticalScrollBarVisibility="Visible">
         <StackPanel Orientation="Vertical" Padding="48, 24" Spacing="8">
             <StackPanel x:Name="ImageBanner" CornerRadius="12">
                 <Image Source="Assets/banner.png" />
