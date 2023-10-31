@@ -33,6 +33,7 @@ namespace Launcher
         {
             this.InitializeComponent();
 
+            // Load theme
             string theme;
             if (localSettings.Values["theme"] != null)
             {
@@ -54,6 +55,19 @@ namespace Launcher
                     ThemeRadioButtons.SelectedIndex = 2;
                     break;
             }
+
+            // Load beta setting
+            bool isBeta;
+            if (localSettings.Values["isBeta"] != null)
+            {
+                isBeta = (bool)(localSettings.Values["isBeta"] ?? false);
+            }
+            else
+            {
+                isBeta = false;
+            }
+            BetaToggleSwitch.IsOn = isBeta;
+            BetaToggleSwitchLabel.Text = isBeta ? "On" : "Off";
         }
 
         private void ThemeRadioButtons_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -73,6 +87,12 @@ namespace Launcher
 
             // WORKAROUND: Send event to mainWindow to reload theme
             Windows.Storage.ApplicationData.Current.SignalDataChanged();
+        }
+
+        private void BetaToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            BetaToggleSwitchLabel.Text = BetaToggleSwitch.IsOn ? "On" : "Off";
+            localSettings.Values["isBeta"] = BetaToggleSwitch.IsOn;
         }
     }
 }

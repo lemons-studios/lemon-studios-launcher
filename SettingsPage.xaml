@@ -11,6 +11,7 @@
 
     <StackPanel Orientation="Vertical" Padding="48, 24" Spacing="4">
         <TextBlock Style="{StaticResource TitleLargeTextBlockStyle}" Margin="0, 0, 0, 20">Settings</TextBlock>
+        <TextBlock Style="{StaticResource SubtitleTextBlockStyle}">Appearance</TextBlock>
         <Expander
             IsExpanded="False"
             ExpandDirection="Down"
@@ -37,6 +38,49 @@
                 <x:String>Use system setting</x:String>
             </RadioButtons>
         </Expander>
+        <StackPanel
+            CornerRadius="4"
+            Padding="16, 12"
+            BorderThickness="1"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
+            <!-- https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font -->
+            <!-- "DevUpdate" icon -->
+            <Grid>
+                <StackPanel Orientation="Horizontal" Spacing="16">
+                    <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xECC5;"/>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}">Get Beta Builds</TextBlock>
+                        <TextBlock Style="{StaticResource CaptionTextBlockStyle}" Opacity="0.8">Recieve updates faster</TextBlock>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="12">
+                    <TextBlock x:Name="BetaToggleSwitchLabel" VerticalAlignment="Center" HorizontalTextAlignment="Right"></TextBlock>
+                    <ToggleSwitch x:Name="BetaToggleSwitch" Toggled="BetaToggleSwitch_Toggled" HorizontalAlignment="Right" OffContent="" OnContent="" MinWidth="0" />
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+        <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Margin="0, 16, 0, 0">About</TextBlock>
+        <Expander
+            IsExpanded="False"
+            ExpandDirection="Down"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Stretch"
+            HorizontalContentAlignment="Left"
+            Padding="48, 0, 0, 12"
+        >
+            <Expander.Header>
+                <StackPanel Height="54" Orientation="Horizontal" Spacing="16">
+                    <ImageIcon Source="Assets/StoreLogo.png" Width="28" />
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}">About</TextBlock>
+                        <TextBlock Style="{StaticResource CaptionTextBlockStyle}" Opacity="0.8">Select which app theme to display</TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </Expander.Header>
+        </Expander>
 
     </StackPanel>
+
 </Page>
