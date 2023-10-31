@@ -38,7 +38,7 @@
         </Grid>
         <NavigationView Grid.Row="1" Grid.Column="0" IsBackButtonVisible="Collapsed" PaneDisplayMode="Top" SelectionChanged="NavigationView_SelectionChanged">
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="Home" Icon="Home" TabNavigation="Once"/>
+                <NavigationViewItem Content="Home" Icon="Home" TabNavigation="Once" IsSelected="True"/>
                 <NavigationViewItem Content="Installation" Icon="Repair" TabNavigation="Once"/>
             </NavigationView.MenuItems>
 
