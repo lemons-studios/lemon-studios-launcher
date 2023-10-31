@@ -15,7 +15,7 @@
                 <Image Source="Assets/banner.png" />
             </StackPanel>
 
-            <Button x:Name="LaunchGameButton" HorizontalAlignment="Center" Style="{StaticResource AccentButtonStyle}" Padding="16, 8" Margin="0, 8, 0, 0">
+            <Button x:Name="LaunchGameButton" HorizontalAlignment="Center" Padding="16, 8" Margin="0, 8, 0, 0">
                 <!-- https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font -->
                 <!-- "play" icon -->
                 <StackPanel Orientation="Horizontal" Spacing="12">
