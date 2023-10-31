@@ -67,18 +67,38 @@
             ExpandDirection="Down"
             VerticalAlignment="Center"
             HorizontalAlignment="Stretch"
-            HorizontalContentAlignment="Left"
-            Padding="48, 0, 0, 12"
+            HorizontalContentAlignment="Stretch"
+            Padding="0"
+            Background="Transparent"
         >
             <Expander.Header>
-                <StackPanel Height="54" Orientation="Horizontal" Spacing="16">
-                    <ImageIcon Source="Assets/StoreLogo.png" Width="28" />
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                        <TextBlock Style="{StaticResource BodyTextBlockStyle}">About</TextBlock>
-                        <TextBlock Style="{StaticResource CaptionTextBlockStyle}" Opacity="0.8">Select which app theme to display</TextBlock>
+                <Grid>
+                    <StackPanel Height="54" Orientation="Horizontal" Spacing="16">
+                        <ImageIcon Source="Assets/StoreLogo.png" Width="28" />
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}">About</TextBlock>
+                            <TextBlock Style="{StaticResource CaptionTextBlockStyle}" Opacity="0.7">© 2023 Lemon Studios.</TextBlock>
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Opacity="0.7">
+                        1.0.0
+                    </TextBlock>
+                </Grid>
             </Expander.Header>
+
+
+            <StackPanel
+                    HorizontalAlignment="Stretch"  
+                    CornerRadius="2"
+                    Padding="48, 16, 60, 16"
+                    BorderThickness="1"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}">
+                <Grid>
+                    <TextBlock>Clone this repository</TextBlock>
+                    <TextBlock HorizontalAlignment="Right" IsTextSelectionEnabled="True" Opacity="0.7">git clone https://github.com/lemons-studios/Mission-Monkey-Installer</TextBlock>
+                </Grid>
+            </StackPanel>
         </Expander>
 
     </StackPanel>
