@@ -15,6 +15,8 @@ using Microsoft.UI.Xaml.Navigation;
 using System.Reflection;
 using WinUIEx;
 using Microsoft.UI.System;
+using Windows.ApplicationModel.DataTransfer;
+using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -93,6 +95,17 @@ namespace Launcher
         {
             BetaToggleSwitchLabel.Text = BetaToggleSwitch.IsOn ? "On" : "Off";
             localSettings.Values["isBeta"] = BetaToggleSwitch.IsOn;
+        }
+
+        private async void CopyGitCmd_Click(object sender, RoutedEventArgs e)
+        {
+            DataPackage dataPackage = new DataPackage();
+            dataPackage.RequestedOperation = DataPackageOperation.Copy;
+            dataPackage.SetText(GitCmdText.Text);
+            Clipboard.SetContent(dataPackage);
+            CopyGitCmdIcon.Glyph = "\xE73E";
+            await Task.Delay(2000);
+            CopyGitCmdIcon.Glyph = "\xE8C8";
         }
     }
 }

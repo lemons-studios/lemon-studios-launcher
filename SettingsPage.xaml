@@ -44,10 +44,10 @@
             BorderThickness="1"
             BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
             Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
-            <!-- https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font -->
-            <!-- "DevUpdate" icon -->
             <Grid>
                 <StackPanel Orientation="Horizontal" Spacing="16">
+                    <!-- https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font -->
+                    <!-- "DevUpdate" icon -->
                     <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xECC5;"/>
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                         <TextBlock Style="{StaticResource BodyTextBlockStyle}">Get Beta Builds</TextBlock>
@@ -90,15 +90,21 @@
             <StackPanel>
 
                 <StackPanel
-                    HorizontalAlignment="Stretch"  
                     CornerRadius="2"
-                    Padding="48, 16, 60, 16"
+                    Padding="60, 12, 60, 12"
                     BorderThickness="0, 1, 0, 0"
                     BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                     Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}">
                     <Grid>
-                        <TextBlock>Clone this repository</TextBlock>
-                        <TextBlock HorizontalAlignment="Right" IsTextSelectionEnabled="True" Opacity="0.7">git clone https://github.com/lemons-studios/Mission-Monkey-Launcher</TextBlock>
+                        <TextBlock VerticalAlignment="Center">Clone this repository</TextBlock>
+                        <StackPanel Margin="150, 0, 0, 0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                            <TextBlock x:Name="GitCmdText" IsTextSelectionEnabled="True" Opacity="0.7" TextTrimming="CharacterEllipsis">git clone https://github.com/lemons-studios/Mission-Monkey-Launcher</TextBlock>
+                        </StackPanel>
+                        <Button x:Name="CopyGitCmd" Click="CopyGitCmd_Click" Width="32" Height="32" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0, 0, -52, 0">
+                            <!-- https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font -->
+                            <!-- "Copy" icon -->
+                            <FontIcon Name="CopyGitCmdIcon" FontSize="{StaticResource BodyTextBlockFontSize}" FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE8C8;"/>
+                        </Button>
                     </Grid>
                 </StackPanel>
             </StackPanel>
