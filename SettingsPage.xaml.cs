@@ -94,9 +94,14 @@ namespace Launcher
             CopyGitCmdIcon.Glyph = "\xE8C8";
         }
 
-        private async void IssueLink_Click(object sender, RoutedEventArgs e)
+        private async void LauncherIssueLink_Click(object sender, RoutedEventArgs e)
         {
             await Windows.System.Launcher.LaunchUriAsync(new System.Uri("https://github.com/lemons-studios/Mission-Monkey-Launcher/issues"));
+        }
+
+        private async void GameIssueLink_Click(object sender, RoutedEventArgs e)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new System.Uri("https://github.com/lemons-studios/Mission-Monkey/issues"));
         }
     }
 }
