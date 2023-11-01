@@ -87,17 +87,20 @@
             </Expander.Header>
 
 
-            <StackPanel
+            <StackPanel>
+
+                <StackPanel
                     HorizontalAlignment="Stretch"  
                     CornerRadius="2"
                     Padding="48, 16, 60, 16"
-                    BorderThickness="1"
+                    BorderThickness="0, 1, 0, 0"
                     BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                     Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}">
-                <Grid>
-                    <TextBlock>Clone this repository</TextBlock>
-                    <TextBlock HorizontalAlignment="Right" IsTextSelectionEnabled="True" Opacity="0.7">git clone https://github.com/lemons-studios/Mission-Monkey-Installer</TextBlock>
-                </Grid>
+                    <Grid>
+                        <TextBlock>Clone this repository</TextBlock>
+                        <TextBlock HorizontalAlignment="Right" IsTextSelectionEnabled="True" Opacity="0.7">git clone https://github.com/lemons-studios/Mission-Monkey-Launcher</TextBlock>
+                    </Grid>
+                </StackPanel>
             </StackPanel>
         </Expander>
 
