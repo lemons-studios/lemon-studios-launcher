@@ -90,9 +90,10 @@
             <StackPanel>
 
                 <StackPanel
-                    CornerRadius="2"
+                    CornerRadius="0"
                     Padding="60, 12, 60, 12"
                     BorderThickness="0, 1, 0, 0"
+                    Margin="0, -1, 0, 0"
                     BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                     Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}">
                     <Grid>
@@ -107,6 +108,25 @@
                         </Button>
                     </Grid>
                 </StackPanel>
+
+                <Button
+                    x:Name="IssueLink"
+                    Click="IssueLink_Click"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    CornerRadius="0"
+                    Padding="60, 16, 16, 16"
+                    BorderThickness="0, 1, 0, 0"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}">
+                    <Grid>
+                        <TextBlock VerticalAlignment="Center">Report an issue or suggest new feature</TextBlock>
+                        <!-- https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font -->
+                        <!-- "OpenInNewWindow" icon -->
+                        <FontIcon HorizontalAlignment="Right" FontSize="{StaticResource BodyTextBlockFontSize}" FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE8A7;"/>
+                    </Grid>
+                </Button>
+
             </StackPanel>
         </Expander>
 

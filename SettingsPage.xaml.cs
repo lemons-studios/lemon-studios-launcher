@@ -2,6 +2,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Windows.ApplicationModel.DataTransfer;
 using System.Threading.Tasks;
+using System;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -91,6 +92,11 @@ namespace Launcher
             CopyGitCmdIcon.Glyph = "\xE73E";
             await Task.Delay(2000);
             CopyGitCmdIcon.Glyph = "\xE8C8";
+        }
+
+        private async void IssueLink_Click(object sender, RoutedEventArgs e)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new System.Uri("https://github.com/lemons-studios/Mission-Monkey-Launcher/issues"));
         }
     }
 }
