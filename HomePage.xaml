@@ -51,8 +51,8 @@
                 <!-- https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font -->
                 <!-- "play" icon -->
                 <StackPanel Orientation="Horizontal" Spacing="12">
-                    <FontIcon FontSize="{StaticResource SubtitleTextBlockFontSize}" FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe768;"/>
-                    <TextBlock FontSize="{StaticResource SubtitleTextBlockFontSize}">Launch Game</TextBlock>
+                    <FontIcon FontSize="18" FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe768;"/>
+                    <TextBlock FontSize="{StaticResource SubtitleTextBlockFontSize}">Play</TextBlock>
                 </StackPanel>
             </Button>
         </StackPanel>
