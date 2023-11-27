@@ -15,14 +15,15 @@
         <StackPanel>
             <StackPanel
             HorizontalAlignment="Stretch"  
-            CornerRadius="2"
-            Padding="48, 16, 60, 16"
+            CornerRadius="4"
+            Padding="24, 0, 24, 0"
             BorderThickness="0, 1, 0, 0"
             BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
             Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}">
-                <Grid>
-                    <TextBlock>v0.3.0</TextBlock>
-                    <TextBlock HorizontalAlignment="Right" IsTextSelectionEnabled="True" Opacity="0.7">C:\Mission-Monkey</TextBlock>
+                <Grid Height="64">
+                    <TextBlock VerticalAlignment="Center">v0.3.0</TextBlock>
+                    <TextBlock x:Name="ReleaseFilePath" HorizontalAlignment="Right" VerticalAlignment="Center" IsTextSelectionEnabled="True" Opacity="0.7">C:\Mission-Monkey</TextBlock>
+                    <Button x:Name="ReleaseDownloadButton" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0">Download</Button>
                 </Grid>
             </StackPanel>
         </StackPanel>
@@ -31,14 +32,15 @@
         <StackPanel>
             <StackPanel
             HorizontalAlignment="Stretch"  
-            CornerRadius="2"
-            Padding="48, 16, 60, 16"
+            CornerRadius="4"
+            Padding="24, 0, 24, 0"
             BorderThickness="0, 1, 0, 0"
             BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
             Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}">
-                <Grid>
-                    <TextBlock>v0.4.0</TextBlock>
-                    <TextBlock HorizontalAlignment="Right" IsTextSelectionEnabled="True" Opacity="0.7">C:\Mission-Monkey</TextBlock>
+                <Grid Height="64">
+                    <TextBlock VerticalAlignment="Center">v0.4.0</TextBlock>
+                    <TextBlock x:Name="BetaFilePath" HorizontalAlignment="Right" VerticalAlignment="Center" IsTextSelectionEnabled="True" Opacity="0.7">C:\Mission-Monkey</TextBlock>
+                    <Button x:Name="BetaDownloadButton" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0">Download</Button>
                 </Grid>
             </StackPanel>
         </StackPanel>

@@ -26,6 +26,21 @@ namespace Launcher
         public InstallationPage()
         {
             this.InitializeComponent();
+
+            SetReleaseInstalled(true);
+            SetBetaInstalled(false);
+        }
+
+        private void SetReleaseInstalled(bool installed)
+        {
+            ReleaseFilePath.Visibility = installed ? Visibility.Visible : Visibility.Collapsed;
+            ReleaseDownloadButton.Visibility = installed ? Visibility.Collapsed : Visibility.Visible;
+        }
+
+        private void SetBetaInstalled(bool installed)
+        {
+            BetaFilePath.Visibility = installed ? Visibility.Visible : Visibility.Collapsed;
+            BetaDownloadButton.Visibility = installed ? Visibility.Collapsed : Visibility.Visible;
         }
     }
 }
