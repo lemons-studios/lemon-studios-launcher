@@ -9,13 +9,45 @@
     mc:Ignorable="d"
     Background="{ThemeResource LayerOnMicaBaseAltFillColorTransparentBrush}">
 
-    <ScrollView VerticalScrollBarVisibility="Visible">
-        <StackPanel Orientation="Vertical" Padding="48, 24" Spacing="8">
-            <StackPanel x:Name="ImageBanner" CornerRadius="12">
-                <Image Source="Assets/banner.png" />
+    <Grid VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="84" />
+        </Grid.RowDefinitions>
+        <ScrollView Grid.Row="0" Padding="48, 24, 48, 0" VerticalScrollBarVisibility="Visible" VerticalAlignment="Stretch" >
+            <StackPanel Spacing="8">
+                <TextBlock FontSize="{StaticResource TitleTextBlockFontSize}">News</TextBlock>
+                <StackPanel Background="{ThemeResource LayerOnMicaBaseAltFillColorSecondaryBrush}" Padding="16" CornerRadius="4">
+                    <TextBlock FontSize="{StaticResource SubtitleTextBlockFontSize}">Sample</TextBlock>
+                    <TextBlock>Lorem ipsum</TextBlock>
+                </StackPanel>
+                <StackPanel Background="{ThemeResource LayerOnMicaBaseAltFillColorSecondaryBrush}" Padding="16" CornerRadius="4">
+                    <TextBlock FontSize="{StaticResource SubtitleTextBlockFontSize}">Sample</TextBlock>
+                    <TextBlock>Lorem ipsum</TextBlock>
+                </StackPanel>
+                <StackPanel Background="{ThemeResource LayerOnMicaBaseAltFillColorSecondaryBrush}" Padding="16" CornerRadius="4">
+                    <TextBlock FontSize="{StaticResource SubtitleTextBlockFontSize}">Sample</TextBlock>
+                    <TextBlock>Lorem ipsum</TextBlock>
+                </StackPanel>
+                <StackPanel Background="{ThemeResource LayerOnMicaBaseAltFillColorSecondaryBrush}" Padding="16" CornerRadius="4">
+                    <TextBlock FontSize="{StaticResource SubtitleTextBlockFontSize}">Sample</TextBlock>
+                    <TextBlock>Lorem ipsum</TextBlock>
+                </StackPanel>
+                <StackPanel Background="{ThemeResource LayerOnMicaBaseAltFillColorSecondaryBrush}" Padding="16" CornerRadius="4">
+                    <TextBlock FontSize="{StaticResource SubtitleTextBlockFontSize}">Sample</TextBlock>
+                    <TextBlock>Lorem ipsum</TextBlock>
+                </StackPanel>
+                <StackPanel Background="{ThemeResource LayerOnMicaBaseAltFillColorSecondaryBrush}" Padding="16" CornerRadius="4">
+                    <TextBlock FontSize="{StaticResource SubtitleTextBlockFontSize}">Sample</TextBlock>
+                    <TextBlock>Lorem ipsum</TextBlock>
+                </StackPanel>
             </StackPanel>
-
-            <Button x:Name="LaunchGameButton" HorizontalAlignment="Center" Padding="16, 8" Margin="0, 8, 0, 0">
+        </ScrollView>
+        <StackPanel x:Name="LaunchBar" Grid.Row="1" Padding="0,16,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderThickness="0,1,0,0" BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}">
+            <StackPanel.Shadow>
+                <ThemeShadow />
+            </StackPanel.Shadow>
+            <Button x:Name="LaunchGameButton" Padding="16, 8" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <!-- https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font -->
                 <!-- "play" icon -->
                 <StackPanel Orientation="Horizontal" Spacing="12">
@@ -23,23 +55,6 @@
                     <TextBlock FontSize="{StaticResource SubtitleTextBlockFontSize}">Launch Game</TextBlock>
                 </StackPanel>
             </Button>
-
-            <NavigationViewItemSeparator Margin="0, 12"/>
-
-            <TextBlock FontSize="{StaticResource TitleTextBlockFontSize}">News</TextBlock>
-            <StackPanel Background="{ThemeResource LayerOnMicaBaseAltFillColorSecondaryBrush}" Padding="16" CornerRadius="4">
-                <TextBlock FontSize="{StaticResource SubtitleTextBlockFontSize}">Sample</TextBlock>
-                <TextBlock>Lorem ipsum</TextBlock>
-            </StackPanel>
-            <StackPanel Background="{ThemeResource LayerOnMicaBaseAltFillColorSecondaryBrush}" Padding="16" CornerRadius="4">
-                <TextBlock FontSize="{StaticResource SubtitleTextBlockFontSize}">Sample</TextBlock>
-                <TextBlock>Lorem ipsum</TextBlock>
-            </StackPanel>
-            <StackPanel Background="{ThemeResource LayerOnMicaBaseAltFillColorSecondaryBrush}" Padding="16" CornerRadius="4">
-                <TextBlock FontSize="{StaticResource SubtitleTextBlockFontSize}">Sample</TextBlock>
-                <TextBlock>Lorem ipsum</TextBlock>
-            </StackPanel>
-
         </StackPanel>
-    </ScrollView>
+    </Grid>
 </Page>
