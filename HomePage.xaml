@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <ScrollView Grid.Row="0" Padding="48, 24, 48, 0" VerticalScrollBarVisibility="Visible" VerticalAlignment="Stretch" >
             <StackPanel Spacing="8">
-                <TextBlock FontSize="{StaticResource TitleTextBlockFontSize}">News</TextBlock>
+                <TextBlock Style="{StaticResource TitleLargeTextBlockStyle}" Margin="0, 0, 0, 20">News</TextBlock>
                 <StackPanel Background="{ThemeResource LayerOnMicaBaseAltFillColorSecondaryBrush}" Padding="16" CornerRadius="4">
                     <TextBlock FontSize="{StaticResource SubtitleTextBlockFontSize}">Sample</TextBlock>
                     <TextBlock>Lorem ipsum</TextBlock>
@@ -43,7 +43,7 @@
                 </StackPanel>
             </StackPanel>
         </ScrollView>
-        <Grid x:Name="LaunchBar" Grid.Row="1" Padding="24,16" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderThickness="0,1,0,0" BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}">
+        <Grid x:Name="LaunchBar" Grid.Row="1" Padding="24,16" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}" BorderThickness="0,1,0,0" BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}">
             <Grid.Shadow>
                 <ThemeShadow />
             </Grid.Shadow>
