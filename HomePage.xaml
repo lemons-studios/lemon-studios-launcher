@@ -48,9 +48,16 @@
                 <ThemeShadow />
             </Grid.Shadow>
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
-                <DropDownButton x:Name="VersionSelect" Content="Select version">
+                <DropDownButton x:Name="VersionSelect" Content="Select version" MinWidth="150" HorizontalContentAlignment="Left">
                     <DropDownButton.Flyout>
-                        <MenuFlyout Placement="TopEdgeAlignedLeft">
+                        <MenuFlyout x:Name="VersionSelectFlyout" Placement="TopEdgeAlignedLeft">
+                            <MenuFlyout.MenuFlyoutPresenterStyle>
+                                <Style TargetType="MenuFlyoutPresenter">
+                                    <Setter Property="IsDefaultShadowEnabled" Value="False" />
+                                    <Setter Property="CornerRadius" Value="6" />
+                                    <Setter Property="MinWidth" Value="150" />
+                                </Style>
+                            </MenuFlyout.MenuFlyoutPresenterStyle>
                             <MenuFlyoutItem x:Name="ReleaseVersionText" Text="Release" Click="ReleaseVersion_Click" />
                             <MenuFlyoutItem x:Name="BetaVersionText" Text="Beta" Click="BetaVersion_Click" />
                         </MenuFlyout>
