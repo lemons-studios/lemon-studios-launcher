@@ -19,7 +19,7 @@ namespace Launcher
         {
             this.InitializeComponent();
 
-            LaunchBar.Translation += new Vector3(0, 0, 1);
+            LaunchBar.Translation = new Vector3(0, 0, 1);
 
             LoadVersions();
         }
