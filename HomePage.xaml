@@ -43,10 +43,20 @@
                 </StackPanel>
             </StackPanel>
         </ScrollView>
-        <StackPanel x:Name="LaunchBar" Grid.Row="1" Padding="0,16,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderThickness="0,1,0,0" BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}">
-            <StackPanel.Shadow>
+        <Grid x:Name="LaunchBar" Grid.Row="1" Padding="24,16" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderThickness="0,1,0,0" BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}">
+            <Grid.Shadow>
                 <ThemeShadow />
-            </StackPanel.Shadow>
+            </Grid.Shadow>
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                <DropDownButton x:Name="VersionSelect" Content="Select version">
+                    <DropDownButton.Flyout>
+                        <MenuFlyout Placement="TopEdgeAlignedLeft">
+                            <MenuFlyoutItem x:Name="ReleaseVersionText" Text="Release" Click="ReleaseVersion_Click" />
+                            <MenuFlyoutItem x:Name="BetaVersionText" Text="Beta" Click="BetaVersion_Click" />
+                        </MenuFlyout>
+                    </DropDownButton.Flyout>
+                </DropDownButton>
+            </StackPanel>
             <Button x:Name="LaunchGameButton" Padding="16, 8" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <!-- https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font -->
                 <!-- "play" icon -->
@@ -55,6 +65,6 @@
                     <TextBlock FontSize="{StaticResource SubtitleTextBlockFontSize}">Play</TextBlock>
                 </StackPanel>
             </Button>
-        </StackPanel>
+        </Grid>
     </Grid>
 </Page>
