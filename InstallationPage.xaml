@@ -9,7 +9,38 @@
     mc:Ignorable="d"
     Background="{ThemeResource LayerOnMicaBaseAltFillColorTransparentBrush}">
 
-    <Grid>
-        <TextBlock>Manage Installation</TextBlock>
-    </Grid>
+    <StackPanel Orientation="Vertical" Padding="48, 24" Spacing="8">
+        <TextBlock Style="{StaticResource TitleLargeTextBlockStyle}" Margin="0, 0, 0, 20">Manage Installations</TextBlock>
+        <TextBlock Style="{StaticResource SubtitleTextBlockStyle}">Stable release</TextBlock>
+        <StackPanel>
+            <StackPanel
+            HorizontalAlignment="Stretch"  
+            CornerRadius="2"
+            Padding="48, 16, 60, 16"
+            BorderThickness="0, 1, 0, 0"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+            Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}">
+                <Grid>
+                    <TextBlock>v0.3.0</TextBlock>
+                    <TextBlock HorizontalAlignment="Right" IsTextSelectionEnabled="True" Opacity="0.7">C:\Mission-Monkey</TextBlock>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+
+        <TextBlock Style="{StaticResource SubtitleTextBlockStyle}">Beta release</TextBlock>
+        <StackPanel>
+            <StackPanel
+            HorizontalAlignment="Stretch"  
+            CornerRadius="2"
+            Padding="48, 16, 60, 16"
+            BorderThickness="0, 1, 0, 0"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+            Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}">
+                <Grid>
+                    <TextBlock>v0.4.0</TextBlock>
+                    <TextBlock HorizontalAlignment="Right" IsTextSelectionEnabled="True" Opacity="0.7">C:\Mission-Monkey</TextBlock>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
 </Page>
