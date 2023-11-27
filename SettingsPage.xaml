@@ -40,7 +40,7 @@
         </Expander>
         <StackPanel
             CornerRadius="4"
-            Padding="16, 12"
+            Padding="16, 7"
             BorderThickness="1"
             BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
             Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
