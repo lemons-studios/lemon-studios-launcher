@@ -1,20 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using System.Reflection;
-using WinUIEx;
-using Microsoft.UI.System;
+using Windows.ApplicationModel.DataTransfer;
+using System.Threading.Tasks;
+using System;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -93,6 +81,27 @@ namespace Launcher
         {
             BetaToggleSwitchLabel.Text = BetaToggleSwitch.IsOn ? "On" : "Off";
             localSettings.Values["isBeta"] = BetaToggleSwitch.IsOn;
+        }
+
+        private async void CopyGitCmd_Click(object sender, RoutedEventArgs e)
+        {
+            DataPackage dataPackage = new DataPackage();
+            dataPackage.RequestedOperation = DataPackageOperation.Copy;
+            dataPackage.SetText(GitCmdText.Text);
+            Clipboard.SetContent(dataPackage);
+            CopyGitCmdIcon.Glyph = "\xE73E";
+            await Task.Delay(2000);
+            CopyGitCmdIcon.Glyph = "\xE8C8";
+        }
+
+        private async void LauncherIssueLink_Click(object sender, RoutedEventArgs e)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new System.Uri("https://github.com/lemons-studios/Mission-Monkey-Launcher/issues"));
+        }
+
+        private async void GameIssueLink_Click(object sender, RoutedEventArgs e)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new System.Uri("https://github.com/lemons-studios/Mission-Monkey/issues"));
         }
     }
 }
