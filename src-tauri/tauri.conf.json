@@ -12,7 +12,18 @@
   },
   "tauri": {
     "allowlist": {
-      "all": false
+      "all": false,
+      "window": {
+        "all": false,
+        "close": true,
+        "hide": true,
+        "show": true,
+        "maximize": true,
+        "minimize": true,
+        "unmaximize": true,
+        "unminimize": true,
+        "startDragging": true
+      }
     },
     "bundle": {
       "active": true,
@@ -56,10 +67,13 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
         "resizable": true,
         "title": "Lemon Studios Launcher",
-        "width": 800
+        "height": 480,
+        "width": 720,
+        "minHeight": 480,
+        "minWidth": 720,
+        "decorations": false
       }
     ]
   }
