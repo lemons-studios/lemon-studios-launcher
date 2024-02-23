@@ -28,13 +28,6 @@ windows = { version = "0.52", features = [
     "Win32_Graphics_Dwm",
     "Win32_Foundation",
     "Win32_UI_Controls",
-
-    "Win32_UI_WindowsAndMessaging", # for TranslateMessage etc.
-    "Win32_System_LibraryLoader",   # for GetModuleHandle
-    "Win32_Graphics_Gdi",           # for WNDCLASSA
-    "Win32_System_Power",           # for RegisterPowerSettingNotification
-    "Win32_System_SystemServices",  # GUID_POWERSCHEME_PERSONALITY
-
 ] }
 
 [features]
