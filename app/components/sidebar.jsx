@@ -14,7 +14,7 @@ export default function Sidebar() {
     <div
       className={
         (expanded ? "w-56 " : "w-16 ") +
-        "flex flex-col justify-stretch bg-[#050505] h-screen"
+        "flex flex-col justify-stretch bg-[#050505] h-screen z-50"
       }
       style={{
         transition: "width .1s",
