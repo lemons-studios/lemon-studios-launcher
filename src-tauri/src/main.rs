@@ -3,9 +3,7 @@
 
 use windows::Win32::{
     Foundation::HWND,
-    UI::WindowsAndMessaging::{AnimateWindow, AW_BLEND, AW_HIDE},
 };
-use raw_window_handle::HasRawWindowHandle;
 use tauri::Manager;
 
 fn enable_window_shadow(window: &impl raw_window_handle::HasRawWindowHandle) {
