@@ -6,9 +6,13 @@
   font-family: "Josefin Sans";
   src: url("/JosefinSans.ttf");
 }
+@font-face {
+  font-family: "Potra";
+  src: url("/Potra.ttf");
+}
 
 body {
-  background: #121212;
+  background: #0000;
   color: #fff;
 }
 
@@ -16,4 +20,7 @@ body {
   font-family: "Josefin Sans", sans-serif;
   font-weight: 300;
   user-select: none;
+}
+.potra {
+  font-family: "Potra", sans-serif;
 }
