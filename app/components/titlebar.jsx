@@ -30,7 +30,7 @@ export default function TitleBar() {
 
   return (
     <div className="relative flex w-full h-14" data-tauri-drag-region>
-      <div className="right-0 absolute flex gap-1">
+      <div className="right-0 absolute flex">
         <button
           className="flex justify-center items-center hover:bg-[#fff2] active:bg-[#fff3] w-12 h-14"
           onClick={() => appWindow.minimize()}
