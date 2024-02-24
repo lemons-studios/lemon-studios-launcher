@@ -5,28 +5,25 @@ import {
   Maximize16Regular,
   SquareMultiple16Regular,
 } from "@fluentui/react-icons";
-import { appWindow } from "@tauri-apps/api/window";
 import { useCallback, useEffect, useState } from "react";
 
 export default function TitleBar() {
   const [maximized, setMaximized] = useState(null);
+  const [appWindow, setAppWindow] = useState();
 
-  const updateMaximized = useCallback(async () => {
-    const res = await appWindow.isMaximized();
-    setMaximized(res);
-  }, []);
+  // Get tauri window instance
+  async function setupAppWindow() {
+    const appWindow = (await import("@tauri-apps/api/window")).appWindow;
+    setAppWindow(appWindow);
 
+    // Add event listener for window maximize/minimize
+    appWindow.onResized(async () => {
+      setMaximized(await appWindow.isMaximized());
+    });
+  }
   useEffect(() => {
-    updateMaximized();
-    let unlisten = undefined;
-    const listen = async () => {
-      unlisten = await appWindow.onResized(() => {
-        updateMaximized();
-      });
-    };
-    listen();
-    return () => unlisten && unlisten();
-  }, [updateMaximized]);
+    setupAppWindow();
+  }, []);
 
   return (
     <>
