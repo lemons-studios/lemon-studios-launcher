@@ -51,11 +51,16 @@
       },
       "resources": [],
       "shortDescription": "",
-      "targets": "all",
+      "targets": "nsis",
       "windows": {
         "certificateThumbprint": null,
         "digestAlgorithm": "sha256",
-        "timestampUrl": ""
+        "timestampUrl": "",
+        "nsis": {
+          "installMode": "both",
+          "license": "../LICENSE",
+          "installerIcon": "./icons/icon.ico"
+        }
       }
     },
     "security": {
