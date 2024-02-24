@@ -20,6 +20,25 @@ export default function TitleBar() {
     appWindow.onResized(async () => {
       setMaximized(await appWindow.isMaximized());
     });
+
+    // Disable context menus
+    document.addEventListener(
+      "contextmenu",
+      (e) => {
+        e.preventDefault();
+        return false;
+      },
+      { capture: true }
+    );
+
+    document.addEventListener(
+      "selectstart",
+      (e) => {
+        e.preventDefault();
+        return false;
+      },
+      { capture: true }
+    );
   }
   useEffect(() => {
     setupAppWindow();
