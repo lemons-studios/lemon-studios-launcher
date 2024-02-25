@@ -19,7 +19,7 @@ export default function Settings() {
   return (
     <>
       {isReady && (
-        <div className="flex flex-col w-full h-full gap-4">
+        <div className="flex flex-col w-full h-full gap-4 slide-in">
           <div>
             {[
               {
