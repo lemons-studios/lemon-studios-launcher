@@ -27,12 +27,11 @@
     },
     "bundle": {
       "active": true,
-      "category": "DeveloperTool",
-      "copyright": "",
-      "deb": {
-        "depends": []
-      },
-      "externalBin": [],
+      "identifier": "com.lemonstudios.launcher",
+      "category": "Game",
+      "copyright": "Lemon Studios 2024",
+      "longDescription": "Launcher for games/software created by Lemon Studios",
+      "shortDescription": "Launcher for games/software created by Lemon Studios",
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
@@ -40,22 +39,15 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.lemonstudios.launcher",
-      "longDescription": "",
-      "macOS": {
-        "entitlements": null,
-        "exceptionDomain": "",
-        "frameworks": [],
-        "providerShortName": null,
-        "signingIdentity": null
-      },
+      "targets": ["deb", "appimage", "nsis", "dmg"],
       "resources": [],
-      "shortDescription": "",
-      "targets": "nsis",
+      "deb": {
+        "depends": []
+      },
+      "macOS": {
+        "exceptionDomain": "lemon-studios.ca"
+      },
       "windows": {
-        "certificateThumbprint": null,
-        "digestAlgorithm": "sha256",
-        "timestampUrl": "",
         "nsis": {
           "installMode": "both",
           "license": "../LICENSE",
