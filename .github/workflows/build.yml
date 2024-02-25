@@ -1,10 +1,6 @@
 name: Build and release
 
-on:
-  workflow_dispatch:
-    inputs:
-      version:
-        required: true
+on: workflow_dispatch
 
 jobs:
   windows-x64-release:
