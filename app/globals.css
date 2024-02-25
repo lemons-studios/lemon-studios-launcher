@@ -2,61 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-	font-family: system-ui;
-	cursor: default !important;
+@font-face {
+  font-family: "Josefin Sans";
+  src: url("/JosefinSans.ttf");
 }
-
-@keyframes pageOpen {
-	0% {
-		transform: translateY(30px);
-		opacity: 0;
-	}
-	100% {
-		transform: translateY(0px);
-		opacity: 1;
-	}
-}
-
-@keyframes indeterminatePb {
-	0% {
-		left: -20%;
-	}
-	60% {
-		left: 100%;
-	}
-	60.1% {
-		left: -20%;
-	}
-	100% {
-		left: 100%;
-	}
-}
-
-.indeterminate-pb {
-	width: 20% !important;
-	animation: indeterminatePb 3s ease-in-out infinite;
-}
-
-* {
-	transition: all 0.1s;
-}
-
-button:disabled {
-	filter: brightness(1) !important;
-	background-color: #8888 !important;
-}
-
-main {
-	animation: pageOpen 0.2s ease-out;
+@font-face {
+  font-family: "Potra";
+  src: url("/Potra.ttf");
 }
 
 body {
-	user-select: none;
+  background: #050505;
+  color: #fff;
 }
 
-@media (prefers-color-scheme: dark) {
-	* {
-		color: #fff;
-	}
+* {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 300;
+  user-select: none;
+}
+.potra {
+  font-family: "Potra", sans-serif;
+}
+
+.slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+@keyframes slide-in {
+  0% {
+    transform: translateY(30%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

@@ -1,23 +1,18 @@
 /** @type {import('tailwindcss').Config} */
-import colors from "tailwindcss/colors";
-
-export const content = ["./pages/**/*.{js,ts,jsx,tsx,mdx}", "./components/**/*.{js,ts,jsx,tsx,mdx}", "./app/**/*.{js,ts,jsx,tsx,mdx}"];
-export const theme = {
-	extend: {
-		backgroundColor: "#1f2937",
-		transitionTimingFunction: {
-			bounce: "cubic-bezier(0,0,.2,3)"
-		}
-	},
-	colors: {
-		transparent: "transparent",
-		current: "currentColor"
-	},
-	screens: {
-		sm: "480px",
-		md: "768px",
-		lg: "976px",
-		xl: "1440px"
-	}
+module.exports = {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+    },
+  },
+  plugins: [],
 };
-export const plugins = [];

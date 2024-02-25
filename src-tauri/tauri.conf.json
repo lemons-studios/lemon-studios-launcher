@@ -1,93 +1,85 @@
 {
-	"$schema": "../node_modules/@tauri-apps/cli/schema.json",
-	"build": {
-		"beforeBuildCommand": "npm run build",
-		"beforeDevCommand": "npm run dev",
-		"devPath": "http://localhost:3000",
-		"distDir": "../out"
-	},
-	"package": {
-		"productName": "Mission Monkey Installer",
-		"version": "0.1.0"
-	},
-	"tauri": {
-		"allowlist": {
-			"process": {
-				"all": true
-			},
-			"fs": {
-				"all": true,
-				"scope": ["$DATA/**", "$LOCALDATA/**", "$TEMP/**", "$RESOURCE/**"]
-			},
-			"window": {
-				"all": true
-			},
-			"path": {
-				"all": true
-			},
-			"os": {
-				"all": true
-			},
-			"shell": {
-				"all": true,
-				"execute": true,
-				"open": ".+",
-				"scope": [
-					{
-						"name": "curl",
-						"cmd": "curl",
-						"args": true
-					},
-					{
-						"name": "tar",
-						"cmd": "tar",
-						"args": true
-					},
-					{
-						"name": "rename",
-						"cmd": "rename",
-						"args": true
-					},
-					{
-						"name": "reg",
-						"cmd": "reg",
-						"args": true
-					},
-					{
-						"name": "winaccentcolor",
-						"cmd": "$APPLOCALDATA/WinAccentColor.exe",
-						"args": false
-					}
-				]
-			}
-		},
-		"bundle": {
-			"active": false,
-			"identifier": "com.lemonstudios.mminstaller",
-			"resources": ["binaries/WinAccentColor.exe"]
-		},
-		"security": {
-			"csp": "*",
-			"dangerousDisableAssetCspModification": true
-		},
-		"updater": {
-			"active": false
-		},
-		"windows": [
-			{
-				"fullscreen": false,
-				"transparent": true,
-				"decorations": false,
-				"height": 500,
-				"width": 600,
-				"minHeight": 400,
-				"minWidth": 500,
-				"maxHeight": 600,
-				"maxWidth": 800,
-				"resizable": true,
-				"title": "Mission: Monkey Installer",
-				"maximizable": false
-			}
-		]
-	}
+  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
+  "build": {
+    "beforeBuildCommand": "yarn build",
+    "beforeDevCommand": "yarn dev",
+    "devPath": "http://localhost:3000",
+    "distDir": "../out"
+  },
+  "package": {
+    "productName": "Lemon Studios Launcher",
+    "version": "0.1.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": false,
+      "window": {
+        "all": false,
+        "close": true,
+        "hide": true,
+        "show": true,
+        "maximize": true,
+        "minimize": true,
+        "unmaximize": true,
+        "unminimize": true,
+        "startDragging": true
+      }
+    },
+    "bundle": {
+      "active": true,
+      "category": "DeveloperTool",
+      "copyright": "",
+      "deb": {
+        "depends": []
+      },
+      "externalBin": [],
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ],
+      "identifier": "com.lemonstudios.launcher",
+      "longDescription": "",
+      "macOS": {
+        "entitlements": null,
+        "exceptionDomain": "",
+        "frameworks": [],
+        "providerShortName": null,
+        "signingIdentity": null
+      },
+      "resources": [],
+      "shortDescription": "",
+      "targets": "nsis",
+      "windows": {
+        "certificateThumbprint": null,
+        "digestAlgorithm": "sha256",
+        "timestampUrl": "",
+        "nsis": {
+          "installMode": "both",
+          "license": "../LICENSE",
+          "installerIcon": "./icons/icon.ico"
+        }
+      }
+    },
+    "security": {
+      "csp": null
+    },
+    "updater": {
+      "active": false
+    },
+    "windows": [
+      {
+        "fullscreen": false,
+        "resizable": true,
+        "title": "Lemon Studios Launcher",
+        "height": 480,
+        "width": 720,
+        "minHeight": 480,
+        "minWidth": 720,
+        "decorations": false
+      }
+    ]
+  }
 }
