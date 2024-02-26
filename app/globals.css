@@ -3,42 +3,41 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Josefin Sans";
-  src: url("/JosefinSans.ttf");
+	font-family: "Josefin Sans";
+	src: url("/JosefinSans.ttf");
 }
 @font-face {
-  font-family: "Potra";
-  src: url("/Potra.ttf");
+	font-family: "Potra";
+	src: url("/Potra.ttf");
 }
 
 body {
-  background: #050505;
-  color: #fff;
+	background: #050505;
+	color: #fff;
 }
 
 * {
-  font-family: "Josefin Sans", sans-serif;
-  font-weight: 300;
-  user-select: none;
+	font-family: "Josefin Sans", sans-serif;
+	font-weight: 300;
+	user-select: none;
 }
 .potra {
-  font-family: "Potra", sans-serif;
+	font-family: "Potra", sans-serif;
 }
 
 .slide-in {
-  animation: slide-in 0.3s ease-out;
+	animation: slide-in 0.3s ease-out;
 }
 @keyframes slide-in {
-  0% {
-    transform: translateY(30%);
-    opacity: 0;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+	0% {
+		transform: translateY(30%);
+		opacity: 0;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
 }
- 

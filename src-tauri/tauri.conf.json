@@ -1,77 +1,77 @@
 {
-  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
-  "build": {
-    "beforeBuildCommand": "yarn build",
-    "beforeDevCommand": "yarn dev",
-    "devPath": "http://localhost:3000",
-    "distDir": "../out"
-  },
-  "package": {
-    "productName": "Lemon Studios Launcher",
-    "version": "0.1.0"
-  },
-  "tauri": {
-    "allowlist": {
-      "all": false,
-      "window": {
-        "all": false,
-        "close": true,
-        "hide": true,
-        "show": true,
-        "maximize": true,
-        "minimize": true,
-        "unmaximize": true,
-        "unminimize": true,
-        "startDragging": true
-      }
-    },
-    "bundle": {
-      "active": true,
-      "identifier": "com.lemonstudios.launcher",
-      "category": "Game",
-      "copyright": "Lemon Studios 2024",
-      "longDescription": "Launcher for games/software created by Lemon Studios",
-      "shortDescription": "Launcher for games/software created by Lemon Studios",
-      "icon": [
-        "icons/32x32.png",
-        "icons/128x128.png",
-        "icons/128x128@2x.png",
-        "icons/icon.icns",
-        "icons/icon.ico"
-      ],
-      "targets": ["deb", "appimage", "nsis", "dmg"],
-      "resources": [],
-      "deb": {
-        "depends": []
-      },
-      "macOS": {
-        "exceptionDomain": "lemon-studios.ca"
-      },
-      "windows": {
-        "nsis": {
-          "installMode": "both",
-          "license": "../LICENSE",
-          "installerIcon": "./icons/icon.ico"
-        }
-      }
-    },
-    "security": {
-      "csp": null
-    },
-    "updater": {
-      "active": false
-    },
-    "windows": [
-      {
-        "fullscreen": false,
-        "resizable": true,
-        "title": "Lemon Studios Launcher",
-        "height": 480,
-        "width": 720,
-        "minHeight": 480,
-        "minWidth": 720,
-        "decorations": false
-      }
-    ]
-  }
+	"$schema": "../node_modules/@tauri-apps/cli/schema.json",
+	"build": {
+		"beforeBuildCommand": "yarn build",
+		"beforeDevCommand": "yarn dev",
+		"devPath": "http://localhost:3000",
+		"distDir": "../out"
+	},
+	"package": {
+		"productName": "Lemon Studios Launcher",
+		"version": "0.1.0"
+	},
+	"tauri": {
+		"allowlist": {
+			"all": false,
+			"window": {
+				"all": false,
+				"close": true,
+				"hide": true,
+				"show": true,
+				"maximize": true,
+				"minimize": true,
+				"unmaximize": true,
+				"unminimize": true,
+				"startDragging": true
+			}
+		},
+		"bundle": {
+			"active": true,
+			"identifier": "com.lemonstudios.launcher",
+			"category": "Game",
+			"copyright": "Lemon Studios 2024",
+			"longDescription": "Launcher for games/software created by Lemon Studios",
+			"shortDescription": "Launcher for games/software created by Lemon Studios",
+			"icon": [
+				"icons/32x32.png",
+				"icons/128x128.png",
+				"icons/128x128@2x.png",
+				"icons/icon.icns",
+				"icons/icon.ico"
+			],
+			"targets": ["deb", "appimage", "nsis", "dmg"],
+			"resources": [],
+			"deb": {
+				"depends": []
+			},
+			"macOS": {
+				"exceptionDomain": "lemon-studios.ca"
+			},
+			"windows": {
+				"nsis": {
+					"installMode": "both",
+					"license": "../LICENSE",
+					"installerIcon": "./icons/icon.ico"
+				}
+			}
+		},
+		"security": {
+			"csp": null
+		},
+		"updater": {
+			"active": false
+		},
+		"windows": [
+			{
+				"fullscreen": false,
+				"resizable": true,
+				"title": "Lemon Studios Launcher",
+				"height": 480,
+				"width": 720,
+				"minHeight": 480,
+				"minWidth": 720,
+				"decorations": false
+			}
+		]
+	}
 }
