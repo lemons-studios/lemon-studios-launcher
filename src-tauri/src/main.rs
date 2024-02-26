@@ -8,7 +8,7 @@ fn main() {
     tauri::Builder::default()
         .setup(move |app| {
             let Some(window) = app.get_window("main") else {
-                return Ok(())
+                return Ok(());
             };
 
             set_shadow(&window, true).unwrap();
