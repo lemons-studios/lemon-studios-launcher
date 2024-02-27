@@ -11,7 +11,7 @@ fn main() {
                 return Ok(());
             };
 
-            set_shadow(&window, true).unwrap();
+            let _ = set_shadow(&window, true);
 
             Ok(())
         })
