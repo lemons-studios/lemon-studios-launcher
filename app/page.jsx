@@ -15,7 +15,7 @@ export default function Home() {
 
 function NewsGrid() {
 	const [reload, triggerReload] = useState(false);
-	const [news, setNews] = useState([]);
+	const [news, setNews] = useState(window.cachedLemonNews || []);
 	const [failed, setFailed] = useState(false);
 
 	useEffect(() => {
@@ -25,15 +25,18 @@ function NewsGrid() {
 			.then((r) => r.json())
 			.then((j) => {
 				setNews(j);
+				window.cachedLemonNews = j;
 			})
 			.catch(() => {
 				setFailed(true);
 				window.didRequestLemonNews = false;
+				delete window.cachedLemonNews;
 			});
 	}, [reload]);
 
 	const reloadNews = () => {
 		window.didRequestLemonNews = false;
+		delete window.cachedLemonNews;
 		setFailed(false);
 		triggerReload(!reload);
 	};
