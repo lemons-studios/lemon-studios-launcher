@@ -51,6 +51,8 @@ jobs:
           npm install
 
       - name: Build and package
+        env:
+          CI: true
         run: |
           npm run tauri build
 
