@@ -35,7 +35,7 @@ function NewsGrid() {
 						>
 							<p className="mb-2 text-xl">{e.name || <Skeleton />}</p>
 							<p className="text-[#888] text-sm">
-								{e.description || <Skeleton count={2.6} />}
+								{e.description || <Skeleton count={3} height={12} />}
 							</p>
 						</div>
 					)
