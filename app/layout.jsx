@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
 
 					<div className="flex flex-col justify-stretch bg-[#050505] p-0 grow">
 						<TitleBar />
-						<div className="bg-[#151515] p-8 rounded-tl-2xl grow">
+						<div className="bg-[#151515] p-8 rounded-tl-2xl h-[calc(100vh-7.5rem)] overflow-y-auto grow">
 							{children}
 						</div>
 					</div>
