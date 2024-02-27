@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { fetchTimeout } from "./components/utils";
+import { ArrowClockwise16Regular } from "@fluentui/react-icons";
 
 export default function Home() {
 	return (
@@ -46,7 +47,8 @@ function NewsGrid() {
 						className="flex justify-center items-center gap-2 bg-[#fff2] hover:bg-[#fff3] px-8 py-3 rounded-lg transition-colors"
 						onClick={reloadNews}
 					>
-						<p className="-mb-1">Retry</p>
+						<ArrowClockwise16Regular />
+						<p className="-mb-1"> Retry</p>
 					</button>
 				</div>
 			) : (
