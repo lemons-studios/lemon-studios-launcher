@@ -33,7 +33,7 @@ jobs:
             src-tauri/target/release/bundle/
 
   macos-universal-release:
-    runs-on: macos-latest
+    runs-on: macos-14-arm64
     steps:
       - name: Git clone
         uses: actions/checkout@v4
