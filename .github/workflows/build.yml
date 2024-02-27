@@ -65,7 +65,7 @@ jobs:
         with:
           name: macos-universal-release
           path: |
-            src-tauri/target/release/bundle/
+            src-tauri/target/universal-apple-darwin/release/bundle/
 
   linux-x64-release:
     runs-on: ubuntu-latest
