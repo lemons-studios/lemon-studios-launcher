@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import { Switch } from "../components/uicomponents";
+import { Beaker24Regular, Games24Regular } from "@fluentui/react-icons";
 
 export default function Settings() {
 	const [isReady, setIsReady] = useState(false);
@@ -27,12 +28,14 @@ export default function Settings() {
 								id: "beta-updates",
 								description: "Beta versions may be unstable",
 								type: "toggle",
+								icon: Beaker24Regular,
 							},
 							{
 								name: "Keep launcher open",
 								id: "keep-open",
 								description: "Keep launcher open after launching the game",
 								type: "toggle",
+								icon: Games24Regular,
 							},
 						].map((e, i) => (
 							<div key={i}>
@@ -42,6 +45,7 @@ export default function Settings() {
 									description={e.description}
 									id={e.id}
 									type={e.type}
+									icon={e.icon}
 								/>
 							</div>
 						))}
@@ -63,9 +67,12 @@ function SettingsItem(props) {
 				"flex justify-between items-center"
 			}
 		>
-			<div>
-				<p className="font-medium">{props.name}</p>
-				<p className="text-sm">{props.description}</p>
+			<div className="flex items-center gap-4">
+				<props.icon />
+				<div>
+					<p className="font-medium">{props.name}</p>
+					<p className="text-sm">{props.description}</p>
+				</div>
 			</div>
 
 			<Switch
