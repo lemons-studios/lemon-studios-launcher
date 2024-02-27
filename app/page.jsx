@@ -6,7 +6,7 @@ import { fetchTimeout } from "./components/utils";
 
 export default function Home() {
 	return (
-		<div className="flex flex-col w-full min-h-full slide-in">
+		<div className="flex flex-col w-full min-h-full fade-in">
 			<NewsGrid />
 		</div>
 	);

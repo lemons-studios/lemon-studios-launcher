@@ -25,19 +25,15 @@ body {
 	font-family: "Potra", sans-serif;
 }
 
-.slide-in {
-	animation: slide-in 0.3s ease-out;
+.fade-in {
+	animation: fade-in 0.4s ease-out;
+	transform-origin: top;
 }
-@keyframes slide-in {
+@keyframes fade-in {
 	0% {
-		transform: translateY(30%);
-		opacity: 0;
-	}
-	50% {
 		opacity: 0;
 	}
 	100% {
-		transform: translateY(0);
 		opacity: 1;
 	}
 }
