@@ -37,3 +37,21 @@ body {
 		opacity: 1;
 	}
 }
+
+/* New scrollbar CSS */
+* {
+	scrollbar-width: auto;
+	scrollbar-color: #666 #151515;
+}
+/* Legacy scrollbar CSS fallback */
+*::-webkit-scrollbar {
+	width: 14px;
+}
+*::-webkit-scrollbar-track {
+	background: #151515;
+}
+*::-webkit-scrollbar-thumb {
+	background-color: #666;
+	border-radius: 10px;
+	border: 2.5px solid #151515;
+}
