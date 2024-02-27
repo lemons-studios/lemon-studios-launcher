@@ -50,11 +50,16 @@ jobs:
         run: |
           npm install
 
+      - name: Install additional binaries for building MacOS universal release
+        run: |
+          rustup target add x86_64-apple-darwin
+          rustup target add aarch64-apple-darwin
+
       - name: Build and package
         env:
           CI: true
         run: |
-          npm run tauri build
+          npm run tauri build --target universal-apple-darwin
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
