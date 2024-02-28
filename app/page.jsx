@@ -23,6 +23,10 @@ function NewsGrid() {
 	);
 	const [failed, setFailed] = useState(false);
 
+	const [postName, setPostName] = useState("");
+	const [postUrl, setPostUrl] = useState("");
+	const [showPostModal, setShowPostModal] = useState(false);
+
 	useEffect(() => {
 		if (window.didRequestLemonNews) return; // prevent request from being sent more than once
 		window.didRequestLemonNews = true;
@@ -75,6 +79,14 @@ function NewsGrid() {
 									style={{
 										pointerEvents: news.length > 0 ? "all" : "none",
 									}}
+									onClick={() => {
+										const url =
+											"https://cdn.lemon-studios.ca/lemon-launcher-feed/" +
+											e.url;
+										setPostName(e.name);
+										setPostUrl(url);
+										setShowPostModal(true);
+									}}
 								>
 									<h2 className="mb-2 text-xl">{e.name || <Skeleton />}</h2>
 									<p className="text-[#888] text-sm">
@@ -86,6 +98,12 @@ function NewsGrid() {
 					</div>
 				</SkeletonTheme>
 			)}
+			<PostViewer
+				name={postName}
+				url={postUrl}
+				show={showPostModal}
+				onClose={() => setShowPostModal(false)}
+			/>
 		</>
 	);
 }

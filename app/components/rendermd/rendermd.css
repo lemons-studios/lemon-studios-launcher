@@ -1,0 +1,12 @@
+.markdown * {
+	font-size: revert !important;
+	user-select: text !important;
+}
+.markdown hr {
+	border-top: #fff2 2px solid;
+	border-radius: 99px;
+	margin: 12px -4px;
+}
+.markdown img {
+	border-radius: 8px;
+}
