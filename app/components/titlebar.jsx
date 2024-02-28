@@ -30,15 +30,6 @@ export default function TitleBar() {
 			},
 			{ capture: true }
 		);
-
-		document.addEventListener(
-			"selectstart",
-			(e) => {
-				e.preventDefault();
-				return false;
-			},
-			{ capture: true }
-		);
 	}
 	useEffect(() => {
 		setupAppWindow();
@@ -54,7 +45,7 @@ export default function TitleBar() {
 				>
 					<div className="flex gap-2">
 						<img src="/lemon-studios.svg" width={20} data-tauri-drag-region />
-						<p data-tauri-drag-region>Lemon Launcher</p>
+						<h1 data-tauri-drag-region>Lemon Launcher</h1>
 					</div>
 					<div className="right-0 absolute flex">
 						<button

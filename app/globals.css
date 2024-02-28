@@ -10,14 +10,26 @@
 	font-family: "Potra";
 	src: url("/Potra.ttf");
 }
+@font-face {
+	font-family: "Sarabun";
+	src: url("/Sarabun.ttf");
+}
 
 body {
 	background: #050505;
 	color: #fff;
 }
 
-* {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	font-family: "Josefin Sans", sans-serif;
+}
+* {
+	font-family: "Sarabun", sans-serif;
 	font-weight: 300;
 	user-select: none;
 }

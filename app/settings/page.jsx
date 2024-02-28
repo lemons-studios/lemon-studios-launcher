@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { Switch } from "../components/uicomponents";
+import { Switch } from "../components/uicomponents/uicomponents";
 import { Beaker24Regular, Games24Regular } from "@fluentui/react-icons";
 
 export default function Settings() {
@@ -70,8 +70,8 @@ function SettingsItem(props) {
 			<div className="flex items-center gap-4">
 				<props.icon />
 				<div>
-					<p className="font-medium">{props.name}</p>
-					<p className="text-sm">{props.description}</p>
+					<h1 className="font-medium">{props.name}</h1>
+					<p className="text-[#888] text-sm">{props.description}</p>
 				</div>
 			</div>
 

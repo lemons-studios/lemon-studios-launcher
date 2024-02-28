@@ -14,7 +14,7 @@ export default function Sidebar() {
 		<div
 			className={
 				(expanded ? "w-56 " : "w-16 ") +
-				"flex flex-col justify-stretch bg-[#050505] h-screen z-50"
+				"flex flex-col justify-stretch bg-[#050505] h-screen"
 			}
 			style={{
 				transition: "width .1s",
@@ -39,7 +39,7 @@ export default function Sidebar() {
 				>
 					<Home16Regular />
 					{expanded && (
-						<p className="mt-1 text-clip [text-wrap:nowrap]">Home</p>
+						<h1 className="mt-1 text-clip [text-wrap:nowrap]">Home</h1>
 					)}
 				</Link>
 
@@ -53,7 +53,9 @@ export default function Sidebar() {
 				>
 					<img src="/mission-monkey.png" width={16} height={16} />
 					{expanded && (
-						<p className="mt-1 text-clip [text-wrap:nowrap]">Mission: Monkey</p>
+						<h1 className="mt-1 text-clip [text-wrap:nowrap]">
+							Mission: Monkey
+						</h1>
 					)}
 				</Link>
 
@@ -67,7 +69,7 @@ export default function Sidebar() {
 				>
 					<Settings16Regular />
 					{expanded && (
-						<p className="mt-1 text-clip [text-wrap:nowrap]">Settings</p>
+						<h1 className="mt-1 text-clip [text-wrap:nowrap]">Settings</h1>
 					)}
 				</Link>
 			</div>
@@ -77,9 +79,9 @@ export default function Sidebar() {
 					<div className="border-[#222] mx-2 border-t"></div>
 
 					{/* Version number */}
-					<div className="flex justify-start items-center p-4 h-16 [text-wrap:nowrap]">
+					<h1 className="flex justify-start items-center p-4 h-16 [text-wrap:nowrap]">
 						Launcher v1.0.0
-					</div>
+					</h1>
 				</>
 			)}
 		</div>

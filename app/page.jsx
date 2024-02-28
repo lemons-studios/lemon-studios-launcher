@@ -4,6 +4,7 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { fetchTimeout } from "./components/utils";
 import { ArrowClockwise16Regular } from "@fluentui/react-icons";
+import PostViewer from "./components/postviewer";
 
 export default function Home() {
 	return (
@@ -75,7 +76,7 @@ function NewsGrid() {
 										pointerEvents: news.length > 0 ? "all" : "none",
 									}}
 								>
-									<p className="mb-2 text-xl">{e.name || <Skeleton />}</p>
+									<h2 className="mb-2 text-xl">{e.name || <Skeleton />}</h2>
 									<p className="text-[#888] text-sm">
 										{e.description || <Skeleton count={3} height={12} />}
 									</p>
