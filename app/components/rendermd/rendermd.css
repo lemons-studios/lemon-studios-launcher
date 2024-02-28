@@ -1,6 +1,9 @@
-.markdown * {
+.markdown *:not(code) {
 	font-size: revert !important;
 	user-select: text !important;
+}
+.markdown *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
+	margin-bottom: 1rem;
 }
 .markdown hr {
 	border-top: #fff2 2px solid;

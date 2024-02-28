@@ -14,6 +14,10 @@
 	font-family: "Sarabun";
 	src: url("/Sarabun.ttf");
 }
+@font-face {
+	font-family: "Roboto Mono";
+	src: url("/RobotoMono.ttf");
+}
 
 body {
 	background: #050505;
@@ -32,6 +36,12 @@ h6 {
 	font-family: "Sarabun", sans-serif;
 	font-weight: 300;
 	user-select: none;
+}
+code,
+code *,
+pre,
+pre * {
+	font-family: "Roboto Mono", monospace !important;
 }
 .potra {
 	font-family: "Potra", sans-serif;

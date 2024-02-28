@@ -17,6 +17,7 @@ export default function RenderMarkdown({ text }) {
 					return !inline && match ? (
 						<Prism
 							{...props}
+							className="border-[#333] border rounded-lg"
 							children={String(children).replace(/\n$/, "")}
 							style={vscDarkPlus}
 							language={match[1]}

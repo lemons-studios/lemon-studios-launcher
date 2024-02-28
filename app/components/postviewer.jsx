@@ -47,7 +47,7 @@ export default function PostViewer({ name, url, show, onClose }) {
 			onRequestClose={onClose}
 		>
 			<div className="flex justify-between items-center">
-				<p className="text-xl">{name}</p>
+				<h1 className="text-xl">{name}</h1>
 				<button
 					className="hover:bg-[#fff3] active:bg-[#fff2] rounded w-8 h-8 transition-colors"
 					onClick={onClose}
