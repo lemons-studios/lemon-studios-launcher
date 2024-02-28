@@ -23,7 +23,7 @@ export default function Sidebar() {
 			<div className="flex flex-col gap-1 p-3 grow">
 				{/* Menu */}
 				<button
-					className="flex flex-row justify-center items-center hover:bg-[#fff1] p-3 rounded-md w-10 h-10"
+					className="z-10 flex flex-row justify-center items-center hover:bg-[#fff1] p-3 rounded-md w-10 h-10"
 					onClick={() => setExpanded(!expanded)}
 				>
 					<Navigation16Regular />

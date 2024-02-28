@@ -33,6 +33,7 @@ export default function PostViewer({ name, url, show, onClose }) {
 				overlay: {
 					background: "#2228",
 					backdropFilter: "blur(5px)",
+					zIndex: 50,
 				},
 				content: {
 					display: "flex",

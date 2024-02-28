@@ -74,7 +74,7 @@ function NewsGrid() {
 						{(news.length > 0 ? news : Array.from(Array(3), (_e, i) => i)).map(
 							(e, i) => (
 								<div
-									className="border-[#222] hover:bg-[#222] p-4 border rounded-lg w-full md:w-[calc(100%/2-0.5rem)] lg:w-[calc(100%/3-1rem)] h-32 cursor-pointer "
+									className="border-[#222] hover:bg-[#222] p-4 border rounded-lg w-full md:w-[calc(100%/2-0.5rem)] lg:w-[calc(100%/3-1rem)] h-32 transition-colors cursor-pointer "
 									key={i}
 									style={{
 										pointerEvents: news.length > 0 ? "all" : "none",
