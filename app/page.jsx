@@ -15,7 +15,11 @@ export default function Home() {
 
 function NewsGrid() {
 	const [reload, triggerReload] = useState(false);
-	const [news, setNews] = useState(window.cachedLemonNews || []);
+	const [news, setNews] = useState(
+		typeof window !== "undefined" && window.cachedLemonNews
+			? window.cachedLemonNews
+			: []
+	);
 	const [failed, setFailed] = useState(false);
 
 	useEffect(() => {
