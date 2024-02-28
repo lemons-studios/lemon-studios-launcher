@@ -47,7 +47,7 @@ export default function TitleBar() {
 	return (
 		<>
 			<div className="w-full h-14"></div>
-			<div className="top-0 left-0 absolute w-full">
+			<div className="top-0 left-0 absolute w-full cursor-default">
 				<div
 					className="relative flex justify-center items-center w-full h-14"
 					data-tauri-drag-region
