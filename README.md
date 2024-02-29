@@ -16,7 +16,7 @@
     <a href="https://github.com/lemons-studios/lemon-studios-launcher/releases/latest">
       <img alt="Version" src="https://img.shields.io/github/package-json/v/lemons-studios/lemon-studios-launcher?style=flat-square&label=Version">
     </a>
-    <a href="https://github.com/lemons-studios/lemon-studios-launcher/blob/master/LICENSE">
+    <a href="https://github.com/lemons-studios/lemon-studios-launcher/blob/main/LICENSE">
       <img alt="License" src="https://img.shields.io/github/license/lemons-studios/lemon-studios-launcher?style=flat-square&label=License">
     </a>
     <br>
