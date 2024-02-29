@@ -1,6 +1,6 @@
 export const fetchTimeout = (url, options = { timeout: 10000 }) => {
 	return new Promise((resolve, reject) => {
-		async () => {
+		(async () => {
 			const timeout = options.timeout || 10000;
 			const controller = new AbortController();
 			const id = setTimeout(() => {
@@ -16,6 +16,6 @@ export const fetchTimeout = (url, options = { timeout: 10000 }) => {
 			clearTimeout(id);
 
 			return resolve(res);
-		};
+		})();
 	});
 };
