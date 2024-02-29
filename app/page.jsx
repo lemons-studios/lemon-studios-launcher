@@ -1,10 +1,10 @@
 "use client";
+import { ArrowClockwise16Regular } from "@fluentui/react-icons";
 import { useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { fetchTimeout } from "./components/utils";
-import { ArrowClockwise16Regular } from "@fluentui/react-icons";
 import PostViewer from "./components/postviewer";
+import { fetchTimeout } from "./components/utils";
 
 export default function Home() {
 	return (
@@ -19,7 +19,7 @@ function NewsGrid() {
 	const [news, setNews] = useState(
 		typeof window !== "undefined" && window.cachedLemonNews
 			? window.cachedLemonNews
-			: []
+			: [],
 	);
 	const [failed, setFailed] = useState(false);
 
@@ -39,13 +39,13 @@ function NewsGrid() {
 			.catch(() => {
 				setFailed(true);
 				window.didRequestLemonNews = false;
-				delete window.cachedLemonNews;
+				window.cachedLemonNews = undefined;
 			});
 	}, [reload]);
 
 	const reloadNews = () => {
 		window.didRequestLemonNews = false;
-		delete window.cachedLemonNews;
+		window.cachedLemonNews = undefined;
 		setFailed(false);
 		triggerReload(!reload);
 	};
@@ -56,6 +56,7 @@ function NewsGrid() {
 				<div className="flex flex-col justify-center items-center w-full h-full">
 					<h1 className="mb-4 font-normal text-2xl">Failed to fetch news</h1>
 					<button
+						type="button"
 						className="flex justify-center items-center gap-2 bg-[#fff2] hover:bg-[#fff3] px-8 py-3 rounded-lg transition-colors"
 						onClick={reloadNews}
 					>
@@ -73,16 +74,15 @@ function NewsGrid() {
 					<div className="flex flex-wrap gap-2">
 						{(news.length > 0 ? news : Array.from(Array(3), (_e, i) => i)).map(
 							(e, i) => (
-								<div
+								<button
+									type="button"
 									className="border-[#222] hover:bg-[#222] p-4 border rounded-lg w-full md:w-[calc(100%/2-0.5rem)] lg:w-[calc(100%/3-1rem)] h-32 transition-colors cursor-pointer "
 									key={i}
 									style={{
 										pointerEvents: news.length > 0 ? "all" : "none",
 									}}
 									onClick={() => {
-										const url =
-											"https://cdn.lemon-studios.ca/lemon-launcher-feed/" +
-											e.url;
+										const url = `https://cdn.lemon-studios.ca/lemon-launcher-feed/${e.url}`;
 										setPostName(e.name);
 										setPostUrl(url);
 										setShowPostModal(true);
@@ -92,8 +92,8 @@ function NewsGrid() {
 									<p className="text-[#888] text-sm">
 										{e.description || <Skeleton count={3} height={12} />}
 									</p>
-								</div>
-							)
+								</button>
+							),
 						)}
 					</div>
 				</SkeletonTheme>

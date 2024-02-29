@@ -1,7 +1,7 @@
 "use client";
+import { Beaker24Regular, Games24Regular } from "@fluentui/react-icons";
 import { useCallback, useEffect, useState } from "react";
 import { Switch } from "../components/uicomponents/uicomponents";
-import { Beaker24Regular, Games24Regular } from "@fluentui/react-icons";
 
 export default function Settings() {
 	const [isReady, setIsReady] = useState(false);
@@ -58,14 +58,13 @@ export default function Settings() {
 
 function SettingsItem(props) {
 	const [checked, setChecked] = useState(
-		localStorage.getItem(props.id) == "true"
+		localStorage.getItem(props.id) === "true",
 	);
 	return (
 		<div
-			className={
-				(props.index > 0 ? "border-t border-[#fff2] mt-4 pt-4 " : "") +
-				"flex justify-between items-center"
-			}
+			className={`${
+				props.index > 0 ? "border-t border-[#fff2] mt-4 pt-4 " : ""
+			}flex justify-between items-center`}
 		>
 			<div className="flex items-center gap-4">
 				<props.icon />

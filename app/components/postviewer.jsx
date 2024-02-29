@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import ReactModal from "react-modal";
-import { fetchTimeout } from "./utils";
-import RenderMarkdown from "./rendermd/rendermd";
 import { Dismiss16Regular } from "@fluentui/react-icons";
+import { useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import ReactModal from "react-modal";
+import RenderMarkdown from "./rendermd/rendermd";
+import { fetchTimeout } from "./utils";
 
 export default function PostViewer({ name, url, show, onClose }) {
 	const [reload, triggerReload] = useState(false);
@@ -50,13 +50,14 @@ export default function PostViewer({ name, url, show, onClose }) {
 			<div className="flex justify-between items-center">
 				<h1 className="text-xl">{name}</h1>
 				<button
+					type="button"
 					className="hover:bg-[#fff3] active:bg-[#fff2] rounded w-8 h-8 transition-colors"
 					onClick={onClose}
 				>
 					<Dismiss16Regular />
 				</button>
 			</div>
-			<div className="border-[#333] my-4 border-t w-full"></div>
+			<div className="border-[#333] my-4 border-t w-full" />
 			{markdown !== "" ? (
 				<RenderMarkdown text={markdown} />
 			) : (
@@ -73,13 +74,13 @@ export default function PostViewer({ name, url, show, onClose }) {
 						{Array.from(Array(4), () => Math.random() / 12 + 11 / 12).map(
 							(e, i) => (
 								<Skeleton count={e} key={i} />
-							)
+							),
 						)}
-						<div className="mb-4"></div>
+						<div className="mb-4" />
 						{Array.from(Array(5), () => Math.random() / 12 + 11 / 12).map(
 							(e, i) => (
 								<Skeleton count={e} key={i} />
-							)
+							),
 						)}
 					</SkeletonTheme>
 				</>

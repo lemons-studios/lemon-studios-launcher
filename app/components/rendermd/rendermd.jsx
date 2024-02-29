@@ -1,11 +1,11 @@
 import "./rendermd.css";
 
 import Markdown from "react-markdown";
-import remarkBreaks from "remark-breaks";
-import remarkGfm from "remark-gfm";
-import remarkEmoji from "remark-emoji";
 import { Prism } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import remarkBreaks from "remark-breaks";
+import remarkEmoji from "remark-emoji";
+import remarkGfm from "remark-gfm";
 
 export default function RenderMarkdown({ text }) {
 	return (

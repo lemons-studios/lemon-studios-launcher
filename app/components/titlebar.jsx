@@ -28,7 +28,7 @@ export default function TitleBar() {
 				e.preventDefault();
 				return false;
 			},
-			{ capture: true }
+			{ capture: true },
 		);
 	}
 	useEffect(() => {
@@ -37,30 +37,38 @@ export default function TitleBar() {
 
 	return (
 		<>
-			<div className="w-full h-14"></div>
+			<div className="w-full h-14" />
 			<div className="top-0 left-0 absolute w-full cursor-default">
 				<div
 					className="relative flex justify-center items-center w-full h-14"
 					data-tauri-drag-region
 				>
 					<div className="flex gap-2">
-						<img src="/lemon-studios.svg" width={20} data-tauri-drag-region />
+						<img
+							src="/lemon-studios.svg"
+							width={20}
+							data-tauri-drag-region
+							alt="Lemon Studios Logo"
+						/>
 						<h1 data-tauri-drag-region>Lemon Launcher</h1>
 					</div>
 					<div className="right-0 absolute flex">
 						<button
+							type="button"
 							className="flex justify-center items-center hover:bg-[#fff2] active:bg-[#fff3] w-12 h-14"
 							onClick={() => appWindow.minimize()}
 						>
 							<LineHorizontal116Regular />
 						</button>
 						<button
+							type="button"
 							className="flex justify-center items-center hover:bg-[#fff2] active:bg-[#fff3] w-12 h-14"
 							onClick={() => appWindow.toggleMaximize()}
 						>
 							{maximized ? <SquareMultiple16Regular /> : <Maximize16Regular />}
 						</button>
 						<button
+							type="button"
 							className="flex justify-center items-center hover:bg-[#ca3230] active:bg-[#84292c] w-12 h-14"
 							onClick={() => appWindow.close()}
 						>
