@@ -13,16 +13,35 @@
 </p>
 <hr>
 
-## 🛠️ Running from source
-
-### Pre-requisites
+## 🗒️ Pre-requisites
 
 - [Git](https://git-scm.com/)
 - [Node.js](https://nodejs.org/)
 - [Rust](https://www.rust-lang.org/)
 - [Yarn](https://yarnpkg.com/)
 
-### Downloading source code
+### 🧶 Yarn
+
+In order to run this project, you must use Yarn v4.
+
+First, install Yarn Classic (v1) with npm:
+
+```sh
+npm install -g yarn
+```
+
+> [!TIP]
+> If you get an error saying that Yarn is not found, try adding your npm bin to PATH.
+
+Next, update Yarn to v4:
+
+```sh
+yarn set version berry
+```
+
+## 🛠️ Running from source
+
+### 📥 Downloading source code
 
 1. First, clone the GitHub repository
 
@@ -37,7 +56,7 @@ cd lemon-studios-launcher
 yarn install
 ```
 
-### Running the Tauri app
+### 🚀 Running the Tauri app
 
 > [!NOTE]  
 > When you first run the Tauri app, it will install and build the necessary Rust dependencies. This can take a few minutes.
@@ -46,7 +65,9 @@ yarn install
 yarn tauri dev
 ```
 
-## 🚀 Distributing
+## 📦 Distributing
+
+### 💻 Building locally
 
 1. Create a Tauri app package using
 
@@ -54,7 +75,11 @@ yarn tauri dev
 yarn tauri build
 ```
 
-2. Generated package can be found at `./src-tauri/target/release/Mission Monkey Installer.exe`
+2. Generated package can be found at `./src-tauri/target/release/`
+
+### ☁️ Building with GitHub Actions
+
+The GitHub Actions workflow can be found in `./.github/workflows/build.yml`.
 
 ## 📜 Credits
 
