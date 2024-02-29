@@ -19,7 +19,7 @@ function NewsGrid() {
 	const [news, setNews] = useState(
 		typeof window !== "undefined" && window.cachedLemonNews
 			? window.cachedLemonNews
-			: [],
+			: []
 	);
 	const [failed, setFailed] = useState(false);
 
@@ -76,7 +76,7 @@ function NewsGrid() {
 							(e, i) => (
 								<button
 									type="button"
-									className="border-[#222] hover:bg-[#222] p-4 border rounded-lg w-full md:w-[calc(100%/2-0.5rem)] lg:w-[calc(100%/3-1rem)] h-32 transition-colors cursor-pointer "
+									className="flex flex-col border-[#222] hover:bg-[#222] p-4 border rounded-lg w-full md:w-[calc(100%/2-0.5rem)] lg:w-[calc(100%/3-1rem)] h-32 transition-colors cursor-pointer"
 									key={i}
 									style={{
 										pointerEvents: news.length > 0 ? "all" : "none",
@@ -93,7 +93,7 @@ function NewsGrid() {
 										{e.description || <Skeleton count={3} height={12} />}
 									</p>
 								</button>
-							),
+							)
 						)}
 					</div>
 				</SkeletonTheme>
