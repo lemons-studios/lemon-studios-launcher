@@ -11,6 +11,7 @@ export default function PostViewer({ name, url, show, onClose }) {
 	const [failed, setFailed] = useState(false);
 
 	useEffect(() => {
+		if (url === "") return setMarkdown("");
 		setMarkdown("");
 		setFailed(false);
 		if (typeof window.cachedLemonNewsArticle === "undefined")
