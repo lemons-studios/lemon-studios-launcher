@@ -23,6 +23,10 @@
     <a href="https://github.com/lemons-studios/lemon-studios-launcher/actions/workflows/build.yml">
       <img alt="Build and release" src="https://img.shields.io/github/actions/workflow/status/lemons-studios/lemon-studios-launcher/build.yml?style=flat-square&label=Build%20and%20release">
     </a>
+    <a href="https://github.com/lemons-studios/lemon-studios-launcher/actions/workflows/github-code-scanning/codeql">
+        <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/lemons-studios/lemon-studios-launcher/github-code-scanning%2Fcodeql?style=flat-square&label=CodeQL" />
+    </a>
+    <br>
     <a href="https://github.com/lemons-studios/lemon-studios-launcher/issues">
       <img alt="Issue" src="https://img.shields.io/github/issues/lemons-studios/lemon-studios-launcher?style=flat-square&label=Issue">
     </a>
