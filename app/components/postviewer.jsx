@@ -13,10 +13,16 @@ export default function PostViewer({ name, url, show, onClose }) {
 	useEffect(() => {
 		setMarkdown("");
 		setFailed(false);
+		if (typeof window.cachedLemonNewsArticle === "undefined")
+			window.cachedLemonNewsArticle = {};
+		if (url in window.cachedLemonNewsArticle)
+			setMarkdown(window.cachedLemonNewsArticle[url]);
+
 		fetchTimeout(url)
 			.then((r) => r.text())
 			.then((j) => {
 				setMarkdown(j);
+				window.cachedLemonNewsArticle[url] = j;
 			})
 			.catch(() => {
 				setFailed(true);
@@ -74,13 +80,13 @@ export default function PostViewer({ name, url, show, onClose }) {
 						{Array.from(Array(4), () => Math.random() / 12 + 11 / 12).map(
 							(e, i) => (
 								<Skeleton count={e} key={i} />
-							),
+							)
 						)}
 						<div className="mb-4" />
 						{Array.from(Array(5), () => Math.random() / 12 + 11 / 12).map(
 							(e, i) => (
 								<Skeleton count={e} key={i} />
-							),
+							)
 						)}
 					</SkeletonTheme>
 				</>
