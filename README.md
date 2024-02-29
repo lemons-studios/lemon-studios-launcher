@@ -12,6 +12,21 @@
   <i>A simple cross-platform app</i>
 </p>
 <hr>
+<p align="center">
+    <a href="https://github.com/lemons-studios/lemon-studios-launcher/releases/latest">
+      <img alt="Version" src="https://img.shields.io/github/package-json/v/lemons-studios/lemon-studios-launcher?style=flat-square&label=Version">
+    </a>
+    <a href="https://github.com/lemons-studios/lemon-studios-launcher/blob/master/LICENSE">
+      <img alt="License" src="https://img.shields.io/github/license/lemons-studios/lemon-studios-launcher?style=flat-square&label=License">
+    </a>
+    <br>
+    <a href="https://github.com/lemons-studios/lemon-studios-launcher/actions/workflows/build.yml">
+      <img alt="Build and release" src="https://img.shields.io/github/actions/workflow/status/lemons-studios/lemon-studios-launcher/build.yml?style=flat-square&label=Build%20and%20release">
+    </a>
+    <a href="https://github.com/lemons-studios/lemon-studios-launcher/issues">
+      <img alt="Issue" src="https://img.shields.io/github/issues/lemons-studios/lemon-studios-launcher?style=flat-square&label=Issue">
+    </a>
+</p>
 
 ## 🗒️ Pre-requisites
 
