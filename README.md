@@ -100,6 +100,24 @@ yarn tauri build
 
 The GitHub Actions workflow can be found in `./.github/workflows/build.yml`.
 
+## 📝 Contributing
+
+Fork this repository and submit a pull request when you are ready.
+
+Please do not modify `biome.json` or `.prettierrc`.
+
+### 👕 Linting
+
+This project primarily uses [Biome](https://biomejs.dev/) for linting. It is recommended to install the Biome plugin for your IDE or code editor. Alternatively, you may also run the linter using
+
+```sh
+yarn lint
+```
+
+### 🖋️ Formatting
+
+For formatting file formats that are not supported by Biome, please use [Prettier](https://prettier.io/).
+
 ## 📜 Credits
 
 - [Josefin Sans](https://fonts.google.com/specimen/Josefin+Sans), made by [Santiago Orozco](https://github.com/sannorozco)
