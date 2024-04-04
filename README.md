@@ -37,26 +37,6 @@
 - [Git](https://git-scm.com/)
 - [Node.js](https://nodejs.org/)
 - [Rust](https://www.rust-lang.org/)
-- [Yarn](https://yarnpkg.com/)
-
-### 🧶 Yarn
-
-In order to run this project, you must use Yarn v4.
-
-First, install Yarn Classic (v1) with npm:
-
-```sh
-npm install -g yarn
-```
-
-> [!TIP]
-> If you get an error saying that Yarn is not found, try adding your npm bin to PATH.
-
-Next, update Yarn to v4:
-
-```sh
-yarn set version berry
-```
 
 ## 🛠️ Running from source
 
@@ -72,7 +52,7 @@ cd lemon-studios-launcher
 2. Install dependencies
 
 ```sh
-yarn install
+npm install
 ```
 
 ### 🚀 Running the Tauri app
@@ -81,7 +61,7 @@ yarn install
 > When you first run the Tauri app, it will install and build the necessary Rust dependencies. This can take a few minutes.
 
 ```sh
-yarn tauri dev
+npm run tauri dev
 ```
 
 ## 📦 Distributing
@@ -91,7 +71,7 @@ yarn tauri dev
 1. Create a Tauri app package using
 
 ```sh
-yarn tauri build
+npm run tauri build
 ```
 
 2. Generated package can be found at `./src-tauri/target/release/`
@@ -111,7 +91,7 @@ Please do not modify `biome.json` or `.prettierrc`.
 This project primarily uses [Biome](https://biomejs.dev/) for linting. It is recommended to install the Biome plugin for your IDE or code editor. Alternatively, you may also run the linter using
 
 ```sh
-yarn lint
+npm run lint
 ```
 
 ### 🖋️ Formatting
